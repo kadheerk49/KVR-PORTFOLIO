@@ -3,21 +3,21 @@ import SpecularButton from '../components/SpecularButton';
 
 export function HeroSection() {
   return (
-    <section id="hero" className="min-h-[100dvh] relative flex flex-col justify-between items-center pt-16 sm:pt-20 pb-8 sm:pb-10 px-4 sm:px-12 overflow-hidden">
+    <section id="hero" className="min-h-[100dvh] relative flex flex-col justify-between items-center pt-14 sm:pt-20 pb-6 sm:pb-10 px-4 sm:px-12 overflow-hidden">
       {/* Background Giant Text Layer - 100% Visible & Bold */}
-      <div className="absolute top-12 sm:top-16 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-0 px-2">
+      <div className="absolute top-14 sm:top-16 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none z-0 px-2">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 0.95, y: 0 }}
           transition={{ duration: 1.0, ease: 'easeOut' }}
-          className="text-[11.5vw] sm:text-[14vw] font-black uppercase tracking-tight leading-[0.92] sm:leading-none text-white select-none drop-shadow-[0_12px_40px_rgba(0,0,0,0.95)]"
+          className="text-[12.8vw] sm:text-[14vw] font-black uppercase tracking-tight leading-[0.9] sm:leading-none text-white select-none drop-shadow-[0_12px_40px_rgba(0,0,0,0.95)]"
         >
           HI, I'M KADHEER
         </motion.h1>
       </div>
 
-      {/* Central Kadheer Real Photo Portrait Layer - Positioned below DH letters */}
-      <div className="relative z-10 my-auto flex items-center justify-center pt-28 xs:pt-32 sm:pt-44 md:pt-48 pb-4">
+      {/* Central Kadheer Real Photo Portrait Layer - Positioned overlapping DH letters */}
+      <div className="relative z-10 flex flex-col items-center justify-center pt-14 sm:pt-44 md:pt-48 my-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -25,13 +25,13 @@ export function HeroSection() {
           className="relative cursor-pointer"
         >
           {/* Ambient Lighting Glow behind Portrait */}
-          <div className="absolute top-10 sm:top-16 left-1/2 -translate-x-1/2 w-60 h-60 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-sky-400/25 via-indigo-500/25 to-purple-500/25 blur-3xl scale-125 pointer-events-none" />
+          <div className="absolute top-8 sm:top-16 left-1/2 -translate-x-1/2 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-sky-400/30 via-indigo-500/30 to-purple-500/30 blur-3xl scale-125 pointer-events-none" />
 
           {/* Kadheer Real Photo Portrait Cutout */}
           <motion.img
             src="images/kadheer_bright_3d_avatar_transparent.png"
             alt="Kadheer Real Photo Portrait"
-            className="w-64 xs:w-72 sm:w-[22rem] md:w-[26rem] lg:w-[29rem] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)] relative z-10"
+            className="w-[84vw] max-w-[21.5rem] sm:w-[22rem] md:w-[26rem] lg:w-[29rem] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)] relative z-10"
             animate={{ y: [-5, 5, -5] }}
             transition={{
               duration: 4.5,
