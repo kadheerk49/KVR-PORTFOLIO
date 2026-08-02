@@ -1,32 +1,20 @@
-# React + TypeScript + Vite
+# 🚀 KADHEER VEL RAJ N — 3D Interactive Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern, high-performance 3D interactive portfolio website for **Kadheer Vel Raj N**, a Data Science Creator specializing in Intelligent Automation, n8n AI Workflows, and Quantitative Financial Market Trading Systems.
 
-Currently, two official plugins are available:
+## ✨ Key Features
+- **3D Hero Interface**: Interactive 3D hero avatar with specular WebGL light-tracking controls.
+- **n8n & AI Automation Systems**: Interactive project cards showcasing custom n8n AI workflows and predictive analytics pipelines.
+- **Quantitative Financial Trading**: Forex trading terminal and crypto analytics heatmap dashboards.
+- **Hardware-Accelerated Smooth Stack**: GPU-accelerated sticky card stacking for featured projects.
+- **Automated CI/CD**: Automatic build and deployment to GitHub Pages via GitHub Actions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
+- **Framework**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS + Custom Dark Design System
+- **Graphics & Motion**: WebGL (`ogl`) + Framer Motion + GSAP
+- **CI/CD**: GitHub Actions (`deploy.yml`)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+© 2026 **KADHEER VEL RAJ N** — All rights reserved.
