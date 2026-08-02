@@ -1,0 +1,76 @@
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base styles */
+html, body {
+  background-color: #0C0C0C;
+  color: #E2EDF8;
+  font-family: 'Kanit', sans-serif;
+  scroll-behavior: smooth;
+}
+
+#root {
+  background-color: #0C0C0C;
+  min-height: 100vh;
+}
+
+/* Main wrapper */
+.main-wrapper {
+  overflow-x: clip;
+}
+
+/* Gradient heading utility - High contrast vibrant text */
+.gradient-heading {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2EDF8 40%, #7DD3FC 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
+}
+
+/* Sub-heading & accent text gradient */
+.accent-gradient-text {
+  background: linear-gradient(135deg, #38BDF8 0%, #A7F3D0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+  background: rgba(18, 22, 32, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Reduced motion behavior */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
