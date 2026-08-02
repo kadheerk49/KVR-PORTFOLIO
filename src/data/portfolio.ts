@@ -133,7 +133,7 @@ export const portfolioData: PortfolioData = {
       images: {
         left: [
           {
-            src: '/images/predictive_analytics_ui_1785590645761.png',
+            src: 'images/predictive_analytics_ui_1785590645761.png',
             alt: 'XGBoost predictive forecasting dashboard',
             width: 420,
             height: 270,
@@ -146,7 +146,7 @@ export const portfolioData: PortfolioData = {
           },
         ],
         right: {
-          src: '/images/predictive_analytics_ui_1785590645761.png',
+          src: 'images/predictive_analytics_ui_1785590645761.png',
           alt: 'Data science time-series forecasting terminal',
           width: 800,
           height: 600,
@@ -163,20 +163,20 @@ export const portfolioData: PortfolioData = {
       images: {
         left: [
           {
-            src: '/images/n8n_automation_flow_1785590627093.png',
+            src: 'images/n8n_automation_flow_1785590627093.png',
             alt: 'API automation pipeline logs and node metrics',
             width: 420,
             height: 270,
           },
           {
-            src: '/images/n8n_ai_workflow_nodes_1785590605971.png',
+            src: 'images/n8n_ai_workflow_nodes_1785590605971.png',
             alt: 'n8n AI agent node canvas',
             width: 420,
             height: 270,
           },
         ],
         right: {
-          src: '/images/n8n_ai_workflow_nodes_1785590605971.png',
+          src: 'images/n8n_ai_workflow_nodes_1785590605971.png',
           alt: 'n8n AI workflow canvas connecting Webhook, GPT-4, Telegram and Database',
           width: 800,
           height: 600,
@@ -193,7 +193,7 @@ export const portfolioData: PortfolioData = {
       images: {
         left: [
           {
-            src: '/images/crypto_analytics_heatmap_1785590681924.png',
+            src: 'images/crypto_analytics_heatmap_1785590681924.png',
             alt: 'Crypto liquidity depth map and order flow heatmap',
             width: 420,
             height: 270,
@@ -206,7 +206,7 @@ export const portfolioData: PortfolioData = {
           },
         ],
         right: {
-          src: '/images/forex_trading_terminal_1785590664198.png',
+          src: 'images/forex_trading_terminal_1785590664198.png',
           alt: 'XAUUSD Gold and Forex quantitative trading terminal',
           width: 800,
           height: 600,

@@ -29,7 +29,7 @@ export function HeroSection() {
 
           {/* Kadheer Real Photo Portrait Cutout */}
           <motion.img
-            src="/images/kadheer_bright_3d_avatar_transparent.png"
+            src="images/kadheer_bright_3d_avatar_transparent.png"
             alt="Kadheer Real Photo Portrait"
             className="w-72 sm:w-[22rem] md:w-[26rem] lg:w-[29rem] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)] relative z-10"
             animate={{ y: [-5, 5, -5] }}

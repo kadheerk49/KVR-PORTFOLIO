@@ -6,11 +6,11 @@ export function MarqueeSection() {
   const row2Ref = useRef<HTMLDivElement>(null);
 
   const marqueeImages = [
-    '/images/n8n_ai_workflow_nodes_1785590605971.png',
-    '/images/predictive_analytics_ui_1785590645761.png',
-    '/images/forex_trading_terminal_1785590664198.png',
-    '/images/n8n_automation_flow_1785590627093.png',
-    '/images/crypto_analytics_heatmap_1785590681924.png',
+    'images/n8n_ai_workflow_nodes_1785590605971.png',
+    'images/predictive_analytics_ui_1785590645761.png',
+    'images/forex_trading_terminal_1785590664198.png',
+    'images/n8n_automation_flow_1785590627093.png',
+    'images/crypto_analytics_heatmap_1785590681924.png',
     'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80',
   ];
 
