@@ -24,18 +24,18 @@ export function ProjectsSection() {
         >
           {portfolioData.projects.map((project) => (
             <ScrollStackItem key={project.number}>
-              <div className="bg-slate-950/90 backdrop-blur-2xl p-8 lg:p-12 rounded-3xl border border-white/20 hover:border-white/40 transition-all duration-300 shadow-2xl">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/80 border border-sky-400/30 text-sky-300 text-xs font-medium tracking-wider uppercase mb-6">
+              <div className="bg-slate-950/90 backdrop-blur-2xl p-5 sm:p-8 lg:p-12 rounded-3xl border border-white/20 hover:border-white/40 transition-all duration-300 shadow-2xl">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/80 border border-sky-400/30 text-sky-300 text-[11px] sm:text-xs font-medium tracking-wider uppercase mb-4 sm:mb-6">
                   <span>•</span> {project.category}
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-10 items-start">
-                  <div className="lg:w-5/12 space-y-4">
-                    <div className="text-5xl md:text-6xl font-light text-sky-400">
+                <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 items-start">
+                  <div className="lg:w-5/12 space-y-3 sm:space-y-4">
+                    <div className="text-4xl sm:text-5xl md:text-6xl font-light text-sky-400">
                       {project.number}
                     </div>
-                    <h3 className="text-3xl lg:text-4xl font-medium text-white mb-4 tracking-wide">{project.title}</h3>
-                    <p className="text-base md:text-lg text-slate-100 leading-relaxed mb-8 font-normal">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white mb-2 sm:mb-4 tracking-wide">{project.title}</h3>
+                    <p className="text-sm sm:text-base md:text-lg text-slate-100 leading-relaxed mb-6 font-normal">
                       {project.description}
                     </p>
                     <div>
@@ -52,7 +52,7 @@ export function ProjectsSection() {
                           <img
                             src={img.src}
                             alt={img.alt}
-                            className="w-full h-44 object-cover hover:scale-105 transition-transform duration-500"
+                            className="w-full h-36 sm:h-44 object-cover hover:scale-105 transition-transform duration-500"
                             width={img.width}
                             height={img.height}
                             loading="lazy"
@@ -64,7 +64,7 @@ export function ProjectsSection() {
                       <img
                         src={project.images.right.src}
                         alt={project.images.right.alt}
-                        className="w-full h-full object-cover min-h-[22rem] hover:scale-105 transition-transform duration-500"
+                        className="w-full h-44 sm:h-full object-cover sm:min-h-[22rem] hover:scale-105 transition-transform duration-500"
                         width={project.images.right.width}
                         height={project.images.right.height}
                         loading="lazy"

@@ -93,21 +93,28 @@ export function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden px-6 py-4 bg-slate-950/95 backdrop-blur-2xl border-b border-white/10 flex flex-col gap-3 text-center"
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden mx-4 my-2 px-6 py-5 bg-slate-950/95 backdrop-blur-2xl border border-white/15 rounded-2xl flex flex-col gap-4 text-center shadow-2xl"
           >
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-xs font-bold tracking-[0.25em] text-white py-2 uppercase hover:text-sky-300"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const sectionId = item.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-xs font-bold tracking-[0.25em] py-2.5 uppercase transition-all duration-200 rounded-xl ${
+                    isActive ? 'text-white bg-white/10 border border-white/20' : 'text-slate-300 hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
