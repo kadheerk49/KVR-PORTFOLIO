@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navItems = [
   { label: 'ABOUT', href: '#about' },
   { label: 'SERVICES', href: '#services' },
+  { label: 'SKILLS', href: '#skills' },
   { label: 'PROJECTS', href: '#projects' },
   { label: 'CONTACT', href: '#contact' },
 ];
@@ -17,7 +18,7 @@ export function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = ['hero', 'about', 'services', 'projects', 'contact'];
+      const sections = ['hero', 'about', 'services', 'skills', 'projects', 'contact'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {

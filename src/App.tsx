@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './sections/Hero';
-import { MarqueeSection } from './sections/Marquee';
 import { AboutSection } from './sections/About';
 import { ServicesSection } from './sections/Services';
+import { SkillsSection } from './sections/Skills';
 import { ProjectsSection } from './sections/Projects';
 import { Aurora } from './components/Aurora';
 import './index.css';
@@ -32,9 +32,9 @@ function App() {
 
       <main className="relative z-10">
         <HeroSection />
-        <MarqueeSection />
         <AboutSection />
         <ServicesSection />
+        <SkillsSection />
         <ProjectsSection />
       </main>
     </div>

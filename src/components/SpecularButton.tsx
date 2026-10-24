@@ -1,5 +1,6 @@
 import { useRef, useEffect, type CSSProperties, type ReactNode, type MouseEventHandler } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
+import { angleDiff } from '../utils/angleDiff';
 
 type ButtonSize = 'sm' | 'md' | 'lg';
 
@@ -233,8 +234,15 @@ export const SpecularButton = ({
       idleAngle += p.speed * dt;
       const steer = p.followMouse && pointerAngle !== null && (!p.autoAnimate || proximityT > 0);
       const target = (steer && pointerAngle !== null) ? pointerAngle : idleAngle;
-      const diff = ((target - angle + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
+      const diff = angleDiff(target, angle);
       angle += diff * (1 - Math.exp(-dt * 7));
+      // Keep the accumulators inside one turn so a long-lived page never
+      // degrades float precision chasing an ever-growing idleAngle
+      const TAU = Math.PI * 2;
+      if (angle > TAU || angle < 0) {
+        angle = ((angle % TAU) + TAU) % TAU;
+        idleAngle = ((idleAngle % TAU) + TAU) % TAU;
+      }
 
       const brightTarget = p.autoAnimate ? 1 : proximityT;
       bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));

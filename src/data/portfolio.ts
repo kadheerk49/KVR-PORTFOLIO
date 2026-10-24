@@ -12,6 +12,11 @@ export interface ServiceItem {
   description: string;
 }
 
+export interface SkillCategory {
+  title: string;
+  skills: string[];
+}
+
 export interface ProjectImage {
   src: string;
   alt: string;
@@ -50,6 +55,7 @@ export interface PortfolioData {
     cornerImages: ProjectImage[];
   };
   services: ServiceItem[];
+  skills: SkillCategory[];
   projects: ProjectItem[];
   contacts: ContactItem[];
 }
@@ -59,9 +65,9 @@ export const portfolioData: PortfolioData = {
   nav: [
     { label: 'About', href: '#about' },
     { label: 'Services', href: '#services' },
+    { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
-  ],
+    { label: 'Contact', href: '#contact' }],
   hero: {
     heading: "Hi, I'm Kadheer",
     subtitle: 'a data science creator building intelligent automation and financial market systems',
@@ -92,8 +98,7 @@ export const portfolioData: PortfolioData = {
         alt: 'Automation workflow diagram',
         width: 420,
         height: 270,
-      },
-    ],
+      }],
   },
   services: [
     {
@@ -120,8 +125,48 @@ export const portfolioData: PortfolioData = {
       number: '05',
       title: 'Commodities Analytics',
       description: 'Gold and crude-oil monitoring using liquidity zones, macroeconomic signals, analytical scripts, and alerts.',
+    }],
+  skills: [
+    {
+      title: 'AI & ML',
+      skills: ['TensorFlow', 'Keras', 'PyTorch', 'scikit-learn', 'XGBoost', 'Hugging Face', 'OpenCV', 'YOLO', 'SHAP', 'spaCy', 'Predictive Modeling', 'Time-Series Forecasting'],
     },
-  ],
+    {
+      title: 'Languages',
+      skills: ['Python', 'SQL', 'R', 'JavaScript', 'TypeScript'],
+    },
+    {
+      title: 'Data & Analytics',
+      skills: ['pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Apache Spark', 'Apache Kafka', 'Power BI', 'Tableau'],
+    },
+    {
+      title: 'Web & Backend',
+      skills: ['HTML', 'CSS', 'Tailwind CSS', 'React', 'Next.js', 'Node.js', 'FastAPI', 'Streamlit', 'Gradio'],
+    },
+    {
+      title: 'Databases',
+      skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Firebase'],
+    },
+    {
+      title: 'Dev & Cloud',
+      skills: ['GitHub', 'Docker', 'Vercel', 'AWS', 'Google Cloud', 'Google Colab', 'Jupyter', 'VS Code', 'Postman', 'Pytest', 'Linux'],
+    },
+    {
+      title: 'AI Coding & Agents',
+      skills: ['Claude Code', 'Antigravity', 'Cursor', 'Codex', 'Gemini CLI', 'Claude', 'Model Context Protocol', 'Prompt engineering'],
+    },
+    {
+      title: 'Research & Workflow',
+      skills: ['LaTeX (Overleaf)', 'Notion', 'Obsidian', 'Excel', 'Google Sheets', 'Patent drafting', 'Scientific writing'],
+    },
+    {
+      title: 'n8n & AI Automation',
+      skills: ['n8n', 'LLM Agents', 'OpenAI API', 'Webhooks', 'REST APIs', 'Telegram Bots', 'Workflow Orchestration', 'Task Automation'],
+    },
+    {
+      title: 'Financial Markets',
+      skills: ['Forex', 'Crypto', 'Gold (XAUUSD)', 'Crude Oil', 'TradingView', 'Price Action', 'Market Structure', 'Liquidity Analysis', 'Risk Management', 'Backtesting'],
+    }],
   projects: [
     {
       number: '01',
@@ -143,8 +188,7 @@ export const portfolioData: PortfolioData = {
             alt: 'Python data analytics plots',
             width: 420,
             height: 270,
-          },
-        ],
+          }],
         right: {
           src: 'images/predictive_analytics_ui_1785590645761.png',
           alt: 'Data science time-series forecasting terminal',
@@ -173,8 +217,7 @@ export const portfolioData: PortfolioData = {
             alt: 'n8n AI agent node canvas',
             width: 420,
             height: 270,
-          },
-        ],
+          }],
         right: {
           src: 'images/n8n_ai_workflow_nodes_1785590605971.png',
           alt: 'n8n AI workflow canvas connecting Webhook, GPT-4, Telegram and Database',
@@ -203,8 +246,7 @@ export const portfolioData: PortfolioData = {
             alt: 'Quantitative trading strategy indicators',
             width: 420,
             height: 270,
-          },
-        ],
+          }],
         right: {
           src: 'images/forex_trading_terminal_1785590664198.png',
           alt: 'XAUUSD Gold and Forex quantitative trading terminal',
@@ -212,8 +254,7 @@ export const portfolioData: PortfolioData = {
           height: 600,
         },
       },
-    },
-  ],
+    }],
   contacts: [
     {
       label: 'Email',
@@ -222,6 +263,5 @@ export const portfolioData: PortfolioData = {
     {
       label: 'Telegram',
       href: 'https://t.me/skull_420',
-    },
-  ],
+    }],
 };
