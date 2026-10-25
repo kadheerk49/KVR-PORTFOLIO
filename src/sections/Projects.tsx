@@ -1,6 +1,6 @@
 import type { FormEvent } from 'react';
 import { Mail, Send, User } from 'lucide-react';
-import { SiGithub, SiTelegram } from 'react-icons/si';
+import { SiGithub, SiReddit, SiTelegram } from 'react-icons/si';
 import { FadeIn } from '../components/FadeIn';
 import SpecularButton from '../components/SpecularButton';
 import { LiveProjectButton } from '../components/LiveProjectButton';
@@ -203,6 +203,7 @@ export function ProjectsSection() {
                         {portfolioData.contacts.map((contact) => {
                           const Icon =
                             contact.label === 'GitHub' ? SiGithub
+                            : contact.label === 'Reddit' ? SiReddit
                             : contact.label === 'Telegram' ? SiTelegram
                             : contact.label === 'Email' ? Mail
                             : User;

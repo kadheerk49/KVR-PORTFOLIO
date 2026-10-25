@@ -261,6 +261,10 @@ export const portfolioData: PortfolioData = {
       href: 'https://github.com/kadheerk49',
     },
     {
+      label: 'Reddit',
+      href: 'https://www.reddit.com/user/skull_420/',
+    },
+    {
       label: 'Email',
       href: 'mailto:kadheerk49@gmail.com',
     },
