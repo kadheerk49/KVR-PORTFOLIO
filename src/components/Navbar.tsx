@@ -35,25 +35,31 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Section tracking: whichever section crosses the viewport's vertical
-  // center line becomes active — one stable value, no flicker while scrolling
+  // Section tracking: on every scroll frame, the active section is the last
+  // one whose top has crossed the viewport's center line. Unlike an
+  // IntersectionObserver (which misses sections that are entered AND exited
+  // between frames during fast scrolling), this can never skip a section in
+  // either direction.
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (suppressSpy.current) return;
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const idx = navItems.findIndex((n) => n.href === `#${entry.target.id}`);
-          if (idx !== -1) setActiveIndex(idx);
-        });
-      },
-      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
-    );
-    navItems.forEach((item) => {
-      const el = document.getElementById(item.href.slice(1));
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+    const update = () => {
+      if (suppressSpy.current) return;
+      const center = window.innerHeight / 2;
+      let idx = -1;
+      for (let i = 0; i < navItems.length; i++) {
+        const el = document.getElementById(navItems[i].href.slice(1));
+        if (el && el.getBoundingClientRect().top <= center) idx = i;
+      }
+      setActiveIndex((prev) => (idx !== prev ? idx : prev));
+    };
+    // Compute synchronously per scroll event — cheap (5 rects) and immune to
+    // frame-timing quirks, so no section can ever be skipped.
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
   }, []);
 
   const handleNavClick = (index: number) => {
