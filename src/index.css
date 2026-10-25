@@ -12,6 +12,12 @@
   padding: 0;
 }
 
+/* Declare the page as dark so browser Night Mode / Force Dark algorithms
+   skip their color transformations (they inverted the white nav pill). */
+:root {
+  color-scheme: dark;
+}
+
 /* Base styles */
 html, body {
   background-color: #0C0C0C;
