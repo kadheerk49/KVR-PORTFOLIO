@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw source photos (processed copies live in public/images/)
+photo_2026-10-25_*.jpg

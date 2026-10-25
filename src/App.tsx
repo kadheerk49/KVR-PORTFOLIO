@@ -33,8 +33,8 @@ function App() {
       <main className="relative z-10">
         <HeroSection />
         <AboutSection />
-        <ServicesSection />
         <SkillsSection />
+        <ServicesSection />
         <ProjectsSection />
       </main>
     </div>

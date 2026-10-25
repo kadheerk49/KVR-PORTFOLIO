@@ -64,8 +64,8 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
   nav: [
     { label: 'About', href: '#about' },
-    { label: 'Services', href: '#services' },
     { label: 'Skills', href: '#skills' },
+    { label: 'Services', href: '#services' },
     { label: 'Projects', href: '#projects' },
     { label: 'Contact', href: '#contact' }],
   hero: {
@@ -76,28 +76,28 @@ export const portfolioData: PortfolioData = {
     text: "I'm a Data Science student at Vellore Institute of Technology, focused on predictive analytics, n8n AI automation, and financial market systems. I build practical workflows, analytical pipelines, and trading tools across Forex, crypto, gold, and crude oil. Based in India, I'm open to projects and collaborations that turn complex data into useful decisions.",
     cornerImages: [
       {
-        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=420&q=80',
-        alt: 'Data visualization dashboard',
-        width: 420,
-        height: 270,
+        src: 'images/about_1.jpg',
+        alt: 'Kadheer Vel Raj N — black and white profile portrait with glasses',
+        width: 900,
+        height: 995,
       },
       {
-        src: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=420&q=80',
-        alt: 'Python code editor',
-        width: 420,
-        height: 270,
+        src: 'images/about_2.jpg',
+        alt: 'Kadheer Vel Raj N — black and white portrait looking down',
+        width: 900,
+        height: 901,
       },
       {
-        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=420&q=80',
-        alt: 'Machine learning model visualization',
-        width: 420,
-        height: 270,
+        src: 'images/about_3.jpg',
+        alt: 'Kadheer Vel Raj N — black and white outdoor profile portrait',
+        width: 700,
+        height: 700,
       },
       {
-        src: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=420&q=80',
-        alt: 'Automation workflow diagram',
-        width: 420,
-        height: 270,
+        src: 'images/about_4.jpg',
+        alt: 'Kadheer Vel Raj N — black and white front portrait',
+        width: 900,
+        height: 900,
       }],
   },
   services: [
@@ -256,6 +256,10 @@ export const portfolioData: PortfolioData = {
       },
     }],
   contacts: [
+    {
+      label: 'GitHub',
+      href: 'https://github.com/kadheerk49',
+    },
     {
       label: 'Email',
       href: 'mailto:kadheerk49@gmail.com',

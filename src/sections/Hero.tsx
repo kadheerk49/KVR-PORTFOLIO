@@ -42,6 +42,46 @@ export function HeroSection() {
         </motion.div>
       </div>
 
+      {/* Scroll-down hint: cascading chevron waterfall — clickable down to About */}
+      <motion.a
+        href="#about"
+        aria-label="Scroll down to About section"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        className="group relative z-20 mx-auto mb-1 flex flex-col items-center transition-transform duration-300 hover:scale-110"
+      >
+        <style>{`
+          .chev {
+            opacity: 0;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: chevFall 1.6s cubic-bezier(0.45, 0, 0.35, 1) infinite;
+          }
+          .chev:nth-of-type(2) { animation-delay: 0.22s; }
+          .chev:nth-of-type(3) { animation-delay: 0.44s; }
+          @keyframes chevFall {
+            0%   { opacity: 0;    transform: translateY(-4px) scale(0.85); }
+            35%  { opacity: 1;    transform: translateY(0)    scale(1); }
+            100% { opacity: 0;    transform: translateY(6px)  scale(0.9); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .chev { animation: none; opacity: 0.8; }
+          }
+        `}</style>
+        <svg width="32" height="36" viewBox="0 0 32 36" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="chevGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#38BDF8" />
+              <stop offset="100%" stopColor="#A7F3D0" />
+            </linearGradient>
+          </defs>
+          <path className="chev" d="M5 3 L16 12 L27 3" stroke="url(#chevGrad)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 4px rgba(56,189,248,0.55))' }} />
+          <path className="chev" d="M5 13 L16 22 L27 13" stroke="url(#chevGrad)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 4px rgba(56,189,248,0.55))' }} />
+          <path className="chev" d="M5 23 L16 32 L27 23" stroke="url(#chevGrad)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 4px rgba(56,189,248,0.55))' }} />
+        </svg>
+      </motion.a>
+
       {/* Bottom Footer Row: Left Bio Text & Right Specular CTA Buttons */}
       <div className="w-full max-w-7xl mx-auto relative z-20 flex flex-col sm:flex-row items-center sm:items-end justify-between gap-5 sm:gap-6 pt-4 sm:pt-6 border-t border-white/10">
         {/* Left Subtitle Bio */}
