@@ -592,6 +592,12 @@ const GooeyNav = ({
           fallback.style.height = `${box.h}px`;
         }
         fallback.style.opacity = box ? '1' : '0';
+        // Without this, browsers without WebGL2 (e.g. Brave with shields) show
+        // an opaque pill over the light base label — white on white, unreadable.
+        if (box) {
+          overlay.style.clipPath = `path('${pillPath(box.x, box.y, box.w, box.h)}')`;
+          overlay.style.visibility = 'visible';
+        }
         return;
       }
 
