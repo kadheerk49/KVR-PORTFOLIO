@@ -66,16 +66,12 @@ html, body {
 }
 
 
-/* Skills marquee */
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.marquee {
-  animation: marqueeScroll linear infinite;
-}
-.marquee-reverse {
-  animation: marqueeScroll linear infinite reverse;
+/* Compact GooeyNav on small screens: keep all 5 labels on one row */
+.gooey-mobile nav {
+  --gn-font: 10px !important;
+  --gn-x: 7px !important;
+  --gn-y: 6px !important;
+  --gn-gap: 1px !important;
 }
 
 /* Reduced motion behavior */
