@@ -12,10 +12,12 @@
   padding: 0;
 }
 
-/* Declare the page as dark so browser Night Mode / Force Dark algorithms
-   skip their color transformations (they inverted the white nav pill). */
+/* Opt out of browser Night Mode / Force Dark entirely: the documented
+   Chromium opt-out is "only light" — the UA then never applies its
+   color transformations. All site colors are hardcoded, so the page
+   keeps its dark look regardless of the declared scheme. */
 :root {
-  color-scheme: dark;
+  color-scheme: only light;
 }
 
 /* Base styles */
