@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Award, ExternalLink, FileText, Github, Mail, Send, User, X } from 'lucide-react';
 import { SiGithub, SiReddit, SiTelegram } from 'react-icons/si';
 import { FadeIn } from '../components/FadeIn';
+import BorderGlow from '../components/BorderGlow';
 import SpecularButton from '../components/SpecularButton';
 import { LiveProjectButton } from '../components/LiveProjectButton';
 import { ElectricBorder } from '../components/ElectricBorder';
@@ -187,16 +188,27 @@ export function ProjectsSection() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {portfolioData.patents.map((patent, index) => (
-                <motion.button
+                <motion.div
                   key={patent.publicationNo}
-                  type="button"
-                  onClick={() => setOpenPatent(index)}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -70 : 70, scale: 0.96 }}
                   whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  whileHover={{ y: -4 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="group text-left rounded-3xl bg-slate-950/80 backdrop-blur-2xl border border-white/15 p-7 shadow-xl transition-colors duration-300 hover:border-amber-400/50 hover:shadow-[0_12px_40px_rgba(251,191,36,0.12)] focus-visible:outline-2 focus-visible:outline-amber-400/60"
+                  className="h-full"
+                >
+                <BorderGlow
+                  glowColor="43 96 56"
+                  colors={['#38bdf8', '#a7f3d0', '#a855f7']}
+                  backgroundColor="#0b0f19"
+                  borderRadius={24}
+                  glowRadius={36}
+                  glowIntensity={0.9}
+                  className="h-full w-full"
+                >
+                <button
+                  type="button"
+                  onClick={() => setOpenPatent(index)}
+                  className="group block w-full h-full text-left p-7 focus-visible:outline-2 focus-visible:outline-amber-400/60 rounded-[inherit]"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-400/40 bg-amber-400/10 text-[10px] font-bold tracking-[0.18em] uppercase text-amber-300">
@@ -238,7 +250,9 @@ export function ProjectsSection() {
                     <FileText size={14} />
                     Click to view the patent PDF
                   </span>
-                </motion.button>
+                </button>
+                </BorderGlow>
+                </motion.div>
               ))}
             </div>
           </div>
