@@ -25,3 +25,6 @@ dist-ssr
 
 # Raw source photos (processed copies live in public/images/)
 photo_2026-10-25_*.jpg
+
+# Playwright MCP test artifacts
+.playwright-mcp/
