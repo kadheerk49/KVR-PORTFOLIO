@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { FadeIn } from '../components/FadeIn';
 import { SkillIcon } from '../components/SkillIcon';
-import CardSwap, { Card } from '../components/CardSwap';
+import CardSwap, { Card, type CardSwapHandle } from '../components/CardSwap';
+import { DomainSlider } from '../components/DomainSlider';
 import { portfolioData } from '../data/portfolio';
 
 const categories = portfolioData.skills;
@@ -11,6 +12,7 @@ const categories = portfolioData.skills;
 export function SkillsSection() {
   const [frontIndex, setFrontIndex] = useState(0);
   const [expanded, setExpanded] = useState<number | null>(null);
+  const swapRef = useRef<CardSwapHandle>(null);
 
   // Escape closes the expanded card; lock page scroll while open
   useEffect(() => {
@@ -45,8 +47,24 @@ export function SkillsSection() {
         </FadeIn>
 
         <FadeIn delay={0.3} duration={0.9} y={30}>
-          <div className="h-[540px] sm:h-[600px] max-w-[820px] mx-auto">
+          {/* Slide control: arrows, swipes and stops all move the deck below */}
+          <div className="mb-8 flex w-full flex-col items-center gap-4">
+            <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-500">
+              slide to a domain
+            </p>
+            <DomainSlider
+              items={categories.map((category) => ({
+                label: category.title,
+                meta: `${category.skills.length} skills`
+              }))}
+              index={frontIndex}
+              onChange={(index) => swapRef.current?.goTo(index)}
+            />
+          </div>
+
+          <div className="h-[90vw] sm:h-[600px] max-w-[820px] mx-auto">
             <CardSwap
+              ref={swapRef}
               width={580}
               height={420}
               cardDistance={58}
@@ -100,7 +118,7 @@ export function SkillsSection() {
 
         <FadeIn delay={0.4} duration={0.8} y={20}>
           <p className="text-center text-[10px] font-bold tracking-[0.3em] uppercase text-slate-600 mt-8">
-            hover to fan · drag or click to swap · arrow keys work too
+            swipe the slider · tap a name to jump · drag or click the cards · arrow keys work too
           </p>
         </FadeIn>
       </div>

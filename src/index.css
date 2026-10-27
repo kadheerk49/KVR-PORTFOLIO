@@ -80,6 +80,15 @@ html, body {
   --gn-gap: 1px !important;
 }
 
+/* Hide the scrollbar on the domain slider's timeline scroller */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Reduced motion behavior */
 @media (prefers-reduced-motion: reduce) {
   * {

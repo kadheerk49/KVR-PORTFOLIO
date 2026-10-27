@@ -1,0 +1,418 @@
+- generic [ref=f18e3]:
+  - banner:
+    - navigation:
+      - generic:
+        - navigation:
+          - generic:
+            - list:
+              - listitem:
+                - link "ABOUT":
+                  - /url: "#about"
+              - listitem:
+                - link "SKILLS":
+                  - /url: "#skills"
+              - listitem:
+                - link "SERVICES":
+                  - /url: "#services"
+              - listitem:
+                - link "PROJECTS":
+                  - /url: "#projects"
+              - listitem:
+                - link "CONTACT":
+                  - /url: "#contact"
+            - list [aria-hidden]:
+              - listitem:
+                - generic: ABOUT
+              - listitem:
+                - generic: SKILLS
+              - listitem:
+                - generic: SERVICES
+              - listitem:
+                - generic: PROJECTS
+              - listitem:
+                - generic: CONTACT
+  - main [ref=f18e4]:
+    - generic [ref=f18e5]:
+      - generic:
+        - heading "HI, I'M KADHEER" [level=1]
+      - img "Kadheer Real Photo Portrait" [ref=f18e8] [cursor=pointer]
+      - link "Scroll down to About section" [ref=f18e9] [cursor=pointer]:
+        - /url: "#about"
+      - generic [ref=f18e14]:
+        - paragraph [ref=f18e16]: A DATA SCIENCE CREATOR DRIVEN BY CRAFTING STRIKING INTELLIGENT AUTOMATION AND FINANCIAL MARKET SYSTEMS
+        - generic [ref=f18e17]:
+          - link "VIEW PROJECTS" [ref=f18e18] [cursor=pointer]:
+            - /url: "#projects"
+          - link "CONTACT ME" [ref=f18e20] [cursor=pointer]:
+            - /url: "#contact"
+    - generic [ref=f18e23]:
+      - generic [ref=f18e26]:
+        - img "Kadheer Vel Raj N — black and white profile portrait with glasses" [ref=f18e28]
+        - generic [ref=f18e29]:
+          - button "Show portrait 1" [ref=f18e30] [cursor=pointer]
+          - button "Show portrait 2" [ref=f18e31] [cursor=pointer]
+          - button "Show portrait 3" [ref=f18e32] [cursor=pointer]
+          - button "Show portrait 4" [ref=f18e33] [cursor=pointer]
+      - generic [ref=f18e34]:
+        - heading "About Me" [level=2] [ref=f18e36]
+        - generic [ref=f18e40]:
+          - generic [ref=f18e41]: I'm
+          - generic [ref=f18e42]: a
+          - generic [ref=f18e43]: Data
+          - generic [ref=f18e44]: Science
+          - generic [ref=f18e45]: student
+          - generic [ref=f18e46]: at
+          - generic [ref=f18e47]: Vellore
+          - generic [ref=f18e48]: Institute
+          - generic [ref=f18e49]: of
+          - generic [ref=f18e50]: Technology,
+          - generic [ref=f18e51]: focused
+          - generic [ref=f18e52]: "on"
+          - generic [ref=f18e53]: predictive
+          - generic [ref=f18e54]: analytics,
+          - generic [ref=f18e55]: n8n
+          - generic [ref=f18e56]: AI
+          - generic [ref=f18e57]: automation,
+          - generic [ref=f18e58]: and
+          - generic [ref=f18e59]: financial
+          - generic [ref=f18e60]: market
+          - generic [ref=f18e61]: systems.
+          - generic [ref=f18e62]: I
+          - generic [ref=f18e63]: build
+          - generic [ref=f18e64]: practical
+          - generic [ref=f18e65]: workflows,
+          - generic [ref=f18e66]: analytical
+          - generic [ref=f18e67]: pipelines,
+          - generic [ref=f18e68]: and
+          - generic [ref=f18e69]: trading
+          - generic [ref=f18e70]: tools
+          - generic [ref=f18e71]: across
+          - generic [ref=f18e72]: Forex,
+          - generic [ref=f18e73]: crypto,
+          - generic [ref=f18e74]: gold,
+          - generic [ref=f18e75]: and
+          - generic [ref=f18e76]: crude
+          - generic [ref=f18e77]: oil.
+          - generic [ref=f18e78]: Based
+          - generic [ref=f18e79]: in
+          - generic [ref=f18e80]: India,
+          - generic [ref=f18e81]: I'm
+          - generic [ref=f18e82]: open
+          - generic [ref=f18e83]: to
+          - generic [ref=f18e84]: projects
+          - generic [ref=f18e85]: and
+          - generic [ref=f18e86]: collaborations
+          - generic [ref=f18e87]: that
+          - generic [ref=f18e88]: turn
+          - generic [ref=f18e89]: complex
+          - generic [ref=f18e90]: data
+          - generic [ref=f18e91]: into
+          - generic [ref=f18e92]: useful
+          - generic [ref=f18e93]: decisions.
+        - generic [ref=f18e95]:
+          - generic [ref=f18e96]: Data Science
+          - generic [ref=f18e109]: Python
+          - generic [ref=f18e112]: SQL
+          - generic [ref=f18e117]: Pandas
+          - generic [ref=f18e120]: n8n AI Automation
+          - generic [ref=f18e123]: Quant Trading
+          - generic [ref=f18e128]: Predictive Analytics
+    - generic [ref=f18e133]:
+      - generic [ref=f18e134]:
+        - heading "My Skills" [level=2] [ref=f18e135]
+        - paragraph [ref=f18e136]:
+          - text: One deck, ten domains —
+          - generic [ref=f18e137]: 84 skills
+          - text: . Click the front card to open it big.
+      - generic [ref=f18e138]:
+        - generic [ref=f18e139]:
+          - paragraph [ref=f18e140]: slide to a domain
+          - generic [ref=f18e141]:
+            - generic [ref=f18e142]:
+              - generic [ref=f18e143]:
+                - text: "01"
+                - generic [ref=f18e144]: / 10
+              - generic [ref=f18e145]: 12 skills
+            - generic [ref=f18e146]:
+              - button "Previous domain" [ref=f18e147] [cursor=pointer]
+              - heading "AI & ML" [level=3] [ref=f18e151]
+              - button "Next domain" [ref=f18e152] [cursor=pointer]
+            - generic [ref=f18e157]:
+              - button "Go to AI & ML" [ref=f18e158] [cursor=pointer]
+              - button "Go to Languages" [ref=f18e160] [cursor=pointer]
+              - button "Go to Data & Analytics" [ref=f18e162] [cursor=pointer]
+              - button "Go to Web & Backend" [ref=f18e164] [cursor=pointer]
+              - button "Go to Databases" [ref=f18e166] [cursor=pointer]
+              - button "Go to Dev & Cloud" [ref=f18e168] [cursor=pointer]
+              - button "Go to AI Coding & Agents" [ref=f18e170] [cursor=pointer]
+              - button "Go to Research & Workflow" [ref=f18e172] [cursor=pointer]
+              - button "Go to n8n & AI Automation" [ref=f18e174] [cursor=pointer]
+              - button "Go to Financial Markets" [ref=f18e176] [cursor=pointer]
+        - region "Card stack" [ref=f18e179]:
+          - generic:
+            - generic [ref=f18e182]:
+              - generic [ref=f18e183]:
+                - heading "AI & ML" [level=3] [ref=f18e184]
+                - generic [ref=f18e185]: "12"
+              - generic [ref=f18e186]:
+                - generic [ref=f18e187]: TensorFlow
+                - generic [ref=f18e190]: Keras
+                - generic [ref=f18e193]: PyTorch
+                - generic [ref=f18e196]: scikit-learn
+                - generic [ref=f18e199]: XGBoost
+                - generic [ref=f18e202]: Hugging Face
+                - generic [ref=f18e205]: OpenCV
+                - generic [ref=f18e208]: YOLO
+                - generic [ref=f18e211]: SHAP
+                - generic [ref=f18e214]: spaCy
+                - generic [ref=f18e217]: Predictive Modeling
+                - generic [ref=f18e232]: Time-Series Forecasting
+              - paragraph [ref=f18e235]: click to expand
+            - generic [ref=f18e238] [cursor=pointer]:
+              - generic [ref=f18e239]:
+                - heading "Languages" [level=3] [ref=f18e240]
+                - generic [ref=f18e241]: "5"
+              - generic [ref=f18e242]:
+                - generic [ref=f18e243]: Python
+                - generic [ref=f18e246]: SQL
+                - generic [ref=f18e251]: R
+                - generic [ref=f18e254]: JavaScript
+                - generic [ref=f18e257]: TypeScript
+              - paragraph [ref=f18e260]: click to expand
+            - generic [ref=f18e263] [cursor=pointer]:
+              - generic [ref=f18e264]:
+                - heading "Data & Analytics" [level=3] [ref=f18e265]
+                - generic [ref=f18e266]: "9"
+              - generic [ref=f18e267]:
+                - generic [ref=f18e268]: pandas
+                - generic [ref=f18e271]: NumPy
+                - generic [ref=f18e274]: Matplotlib
+                - generic [ref=f18e278]: Seaborn
+                - generic [ref=f18e286]: Plotly
+                - generic [ref=f18e289]: Apache Spark
+                - generic [ref=f18e292]: Apache Kafka
+                - generic [ref=f18e295]: Power BI
+                - generic [ref=f18e299]: Tableau
+              - paragraph [ref=f18e304]: click to expand
+            - generic [ref=f18e307] [cursor=pointer]:
+              - generic [ref=f18e308]:
+                - heading "Web & Backend" [level=3] [ref=f18e309]
+                - generic [ref=f18e310]: "9"
+              - generic [ref=f18e311]:
+                - generic [ref=f18e312]: HTML
+                - generic [ref=f18e315]: CSS
+                - generic [ref=f18e318]: Tailwind CSS
+                - generic [ref=f18e321]: React
+                - generic [ref=f18e324]: Next.js
+                - generic [ref=f18e327]: Node.js
+                - generic [ref=f18e330]: FastAPI
+                - generic [ref=f18e333]: Streamlit
+                - generic [ref=f18e336]: Gradio
+              - paragraph [ref=f18e339]: click to expand
+            - generic [ref=f18e342] [cursor=pointer]:
+              - generic [ref=f18e343]:
+                - heading "Databases" [level=3] [ref=f18e344]
+                - generic [ref=f18e345]: "5"
+              - generic [ref=f18e346]:
+                - generic [ref=f18e347]: PostgreSQL
+                - generic [ref=f18e350]: MySQL
+                - generic [ref=f18e353]: MongoDB
+                - generic [ref=f18e356]: Redis
+                - generic [ref=f18e359]: Firebase
+              - paragraph [ref=f18e362]: click to expand
+            - generic [ref=f18e365] [cursor=pointer]:
+              - generic [ref=f18e366]:
+                - heading "Dev & Cloud" [level=3] [ref=f18e367]
+                - generic [ref=f18e368]: "11"
+              - generic [ref=f18e369]:
+                - generic [ref=f18e370]: GitHub
+                - generic [ref=f18e373]: Docker
+                - generic [ref=f18e376]: Vercel
+                - generic [ref=f18e379]: AWS
+                - generic [ref=f18e382]: Google Cloud
+                - generic [ref=f18e385]: Google Colab
+                - generic [ref=f18e388]: Jupyter
+                - generic [ref=f18e391]: VS Code
+                - generic [ref=f18e394]: Postman
+                - generic [ref=f18e397]: Pytest
+                - generic [ref=f18e400]: Linux
+              - paragraph [ref=f18e403]: click to expand
+            - generic [ref=f18e406] [cursor=pointer]:
+              - generic [ref=f18e407]:
+                - heading "AI Coding & Agents" [level=3] [ref=f18e408]
+                - generic [ref=f18e409]: "8"
+              - generic [ref=f18e410]:
+                - generic [ref=f18e411]: Claude Code
+                - generic [ref=f18e416]: Antigravity
+                - generic [ref=f18e423]: Cursor
+                - generic [ref=f18e426]: Codex
+                - generic [ref=f18e430]: Gemini CLI
+                - generic [ref=f18e433]: Claude
+                - generic [ref=f18e436]: Model Context Protocol
+                - generic [ref=f18e439]: Prompt engineering
+              - paragraph [ref=f18e444]: click to expand
+            - generic [ref=f18e447] [cursor=pointer]:
+              - generic [ref=f18e448]:
+                - heading "Research & Workflow" [level=3] [ref=f18e449]
+                - generic [ref=f18e450]: "7"
+              - generic [ref=f18e451]:
+                - generic [ref=f18e452]: LaTeX (Overleaf)
+                - generic [ref=f18e455]: Notion
+                - generic [ref=f18e458]: Obsidian
+                - generic [ref=f18e461]: Excel
+                - generic [ref=f18e464]: Google Sheets
+                - generic [ref=f18e467]: Patent drafting
+                - generic [ref=f18e474]: Scientific writing
+              - paragraph [ref=f18e478]: click to expand
+            - generic [ref=f18e481] [cursor=pointer]:
+              - generic [ref=f18e482]:
+                - heading "n8n & AI Automation" [level=3] [ref=f18e483]
+                - generic [ref=f18e484]: "8"
+              - generic [ref=f18e485]:
+                - generic [ref=f18e486]: n8n
+                - generic [ref=f18e489]: LLM Agents
+                - generic [ref=f18e495]: OpenAI API
+                - generic [ref=f18e500]: Webhooks
+                - generic [ref=f18e505]: REST APIs
+                - generic [ref=f18e509]: Telegram Bots
+                - generic [ref=f18e512]: Workflow Orchestration
+                - generic [ref=f18e517]: Task Automation
+              - paragraph [ref=f18e520]: click to expand
+            - generic [ref=f18e523] [cursor=pointer]:
+              - generic [ref=f18e524]:
+                - heading "Financial Markets" [level=3] [ref=f18e525]
+                - generic [ref=f18e526]: "10"
+              - generic [ref=f18e527]:
+                - generic [ref=f18e528]: Forex
+                - generic [ref=f18e533]: Crypto
+                - generic [ref=f18e536]: Gold (XAUUSD)
+                - generic [ref=f18e542]: Crude Oil
+                - generic [ref=f18e548]: TradingView
+                - generic [ref=f18e551]: Price Action
+                - generic [ref=f18e556]: Market Structure
+                - generic [ref=f18e560]: Liquidity Analysis
+                - generic [ref=f18e565]: Risk Management
+                - generic [ref=f18e569]: Backtesting
+              - paragraph [ref=f18e574]: click to expand
+      - paragraph [ref=f18e576]: swipe the slider · hover a stop to name it · drag or click the cards · arrow keys work too
+    - generic [ref=f18e578]:
+      - generic [ref=f18e580]:
+        - heading "My Services" [level=2] [ref=f18e581]
+        - paragraph [ref=f18e582]: What I build, from raw data to automated decisions
+      - generic [ref=f18e583]:
+        - generic [ref=f18e585]:
+          - generic: "01"
+          - generic [ref=f18e586]: "01"
+          - heading "Data Science & Analytics" [level=3] [ref=f18e591]
+          - paragraph [ref=f18e592]: Python, Pandas, SQL, exploratory analysis, visualization, predictive modeling, and machine-learning workflows.
+        - generic [ref=f18e594]:
+          - generic: "02"
+          - generic [ref=f18e595]: "02"
+          - heading "n8n AI Automation" [level=3] [ref=f18e602]
+          - paragraph [ref=f18e603]: n8n pipelines connecting LLMs, webhooks, APIs, Telegram bots, and automated task execution.
+        - generic [ref=f18e605]:
+          - generic: "03"
+          - generic [ref=f18e606]: "03"
+          - heading "Forex Trading Systems" [level=3] [ref=f18e613]
+          - paragraph [ref=f18e614]: Market-structure analysis, price-action setups, technical indicators, alerts, and controlled risk parameters.
+        - generic [ref=f18e616]:
+          - generic: "04"
+          - generic [ref=f18e617]: "04"
+          - heading "Crypto Market Analytics" [level=3] [ref=f18e622]
+          - paragraph [ref=f18e623]: Cryptocurrency tracking, liquidity analysis, backtesting, and risk-management tooling.
+        - generic [ref=f18e625]:
+          - generic: "05"
+          - generic [ref=f18e626]: "05"
+          - heading "Commodities Analytics" [level=3] [ref=f18e634]
+          - paragraph [ref=f18e635]: Gold and crude-oil monitoring using liquidity zones, macroeconomic signals, analytical scripts, and alerts.
+    - generic [ref=f18e637]:
+      - heading "Featured Projects" [level=2] [ref=f18e639]
+      - generic [ref=f18e640]:
+        - generic [ref=f18e642]:
+          - generic [ref=f18e643]:
+            - generic [ref=f18e644]: •
+            - text: Data Science
+          - generic [ref=f18e645]:
+            - generic [ref=f18e646]:
+              - generic [ref=f18e647]: "01"
+              - heading "Predictive Analytics" [level=3] [ref=f18e648]
+              - paragraph [ref=f18e649]: Exploratory data analysis pipelines, predictive modeling, visualization dashboards, and machine learning models in Python & SQL.
+              - link "Discuss Project" [ref=f18e651] [cursor=pointer]:
+                - /url: "#contact"
+            - generic [ref=f18e653]:
+              - generic [ref=f18e654]:
+                - img "XGBoost predictive forecasting dashboard" [ref=f18e656]
+                - img "Python data analytics plots" [ref=f18e658]
+              - img "Data science time-series forecasting terminal" [ref=f18e660]
+        - generic [ref=f18e662]:
+          - generic [ref=f18e663]:
+            - generic [ref=f18e664]: •
+            - text: AI & Automation
+          - generic [ref=f18e665]:
+            - generic [ref=f18e666]:
+              - generic [ref=f18e667]: "02"
+              - heading "n8n AI Workflows" [level=3] [ref=f18e668]
+              - paragraph [ref=f18e669]: Custom n8n workflow engines integrating LLMs, webhooks, Telegram bots, and automated task execution.
+              - link "Discuss Project" [ref=f18e671] [cursor=pointer]:
+                - /url: "#contact"
+            - generic [ref=f18e673]:
+              - generic [ref=f18e674]:
+                - img "API automation pipeline logs and node metrics" [ref=f18e676]
+                - img "n8n AI agent node canvas" [ref=f18e678]
+              - img "n8n AI workflow canvas connecting Webhook, GPT-4, Telegram and Database" [ref=f18e680]
+        - generic [ref=f18e682]:
+          - generic [ref=f18e683]:
+            - generic [ref=f18e684]: •
+            - text: Market Intelligence
+          - generic [ref=f18e685]:
+            - generic [ref=f18e686]:
+              - generic [ref=f18e687]: "03"
+              - heading "Financial Market Systems" [level=3] [ref=f18e688]
+              - paragraph [ref=f18e689]: Quantitative setups and indicator tools for Forex pairs and Crypto markets with custom risk parameters.
+              - link "Discuss Project" [ref=f18e691] [cursor=pointer]:
+                - /url: "#contact"
+            - generic [ref=f18e693]:
+              - generic [ref=f18e694]:
+                - img "Crypto liquidity depth map and order flow heatmap" [ref=f18e696]
+                - img "Quantitative trading strategy indicators" [ref=f18e698]
+              - img "XAUUSD Gold and Forex quantitative trading terminal" [ref=f18e700]
+      - generic [ref=f18e705]:
+        - heading "Get in Touch" [level=3] [ref=f18e706]
+        - paragraph [ref=f18e707]: Have an idea, a project, or an automation to build? I'm always open to meaningful conversations and new possibilities.
+        - generic [ref=f18e708]:
+          - generic [ref=f18e709]:
+            - generic [ref=f18e710]:
+              - generic [ref=f18e711]: Name
+              - textbox "Name" [ref=f18e712]:
+                - /placeholder: Your Name
+            - generic [ref=f18e713]:
+              - generic [ref=f18e714]: Email
+              - textbox "Email" [ref=f18e715]:
+                - /placeholder: your.email@example.com
+            - generic [ref=f18e716]:
+              - generic [ref=f18e717]: Message
+              - textbox "Message" [ref=f18e718]:
+                - /placeholder: Tell me what you're thinking...
+            - generic [ref=f18e719]:
+              - button "SEND MESSAGE" [ref=f18e720] [cursor=pointer]
+              - paragraph [ref=f18e722]: Opens your email app with the message pre-filled — nothing is stored on the site.
+          - generic [ref=f18e723]:
+            - generic [ref=f18e724]:
+              - heading "Contact Details" [level=4] [ref=f18e725]
+              - generic [ref=f18e726]:
+                - link "kadheerk49@gmail.com" [ref=f18e727] [cursor=pointer]:
+                  - /url: mailto:kadheerk49@gmail.com
+                - link "Telegram — @skull_420" [ref=f18e733] [cursor=pointer]:
+                  - /url: https://t.me/skull_420
+            - generic [ref=f18e739]:
+              - heading "Social Profiles" [level=4] [ref=f18e740]
+              - generic [ref=f18e741]:
+                - link "GitHub" [ref=f18e742] [cursor=pointer]:
+                  - /url: https://github.com/kadheerk49
+                - link "Reddit" [ref=f18e745] [cursor=pointer]:
+                  - /url: https://www.reddit.com/user/skull_420/
+                - link "Email" [ref=f18e748] [cursor=pointer]:
+                  - /url: mailto:kadheerk49@gmail.com
+                - link "Telegram" [ref=f18e752] [cursor=pointer]:
+                  - /url: https://t.me/skull_420
+      - paragraph [ref=f18e756]: © 2026 KADHEER VEL RAJ N — All rights reserved.

@@ -29,6 +29,8 @@ export interface CardSwapItem {
 export interface CardSwapHandle {
   next: () => void;
   prev: () => void;
+  /** Bring the card at `index` to the front, animating through the stack. */
+  goTo: (index: number) => void;
 }
 
 export interface CardSwapProps {
@@ -165,6 +167,7 @@ interface ShiftOptions {
 interface SwapApi {
   next: () => void;
   prev: () => void;
+  goTo: (index: number) => void;
   refresh: () => void;
 }
 
@@ -415,7 +418,8 @@ const CardSwap = forwardRef<CardSwapHandle, CardSwapProps>(
       ref,
       () => ({
         next: () => apiRef.current?.next(),
-        prev: () => apiRef.current?.prev()
+        prev: () => apiRef.current?.prev(),
+        goTo: (index: number) => apiRef.current?.goTo(index)
       }),
       []
     );
@@ -708,12 +712,21 @@ const CardSwap = forwardRef<CardSwapHandle, CardSwapProps>(
         schedule();
       };
 
-      const goTo = (position: number) => {
+      // Bring a specific card to the front. Steps in whichever direction is
+      // shorter, replaying the regular swap animation one card at a time.
+      const goToCard = (index: number) => {
         state.queue.forEach(clearTimeout);
         state.queue = [];
+        if (count < 2) return;
+        const position = state.order.indexOf(index);
+        if (position <= 0) return;
+        const backward = count - position;
+        const forward = position <= backward;
+        const steps = forward ? position : backward;
+        const direction = forward ? 1 : -1;
         const gap = 110 / settingsRef.current.speed;
-        for (let i = 0; i < position; i++) {
-          state.queue.push(window.setTimeout(() => shift(1), i * gap));
+        for (let i = 0; i < steps; i++) {
+          state.queue.push(window.setTimeout(() => shift(direction), i * gap));
         }
       };
 
@@ -859,8 +872,7 @@ const CardSwap = forwardRef<CardSwapHandle, CardSwapProps>(
         if (!target || !root.contains(target)) return;
         const index = Number(target.getAttribute('data-swap-index'));
         settingsRef.current.onCardClick?.(index);
-        const position = state.order.indexOf(index);
-        if (position > 0) goTo(position);
+        if (state.order[0] !== index) goToCard(index);
       };
 
       const onVisibility = () => schedule();
@@ -868,6 +880,7 @@ const CardSwap = forwardRef<CardSwapHandle, CardSwapProps>(
       apiRef.current = {
         next: () => shift(1),
         prev: () => shift(-1),
+        goTo: goToCard,
         refresh: () => {
           const s = settingsRef.current;
           deck.forEach(card => {

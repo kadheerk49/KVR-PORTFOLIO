@@ -5,6 +5,7 @@ import { AboutSection } from './sections/About';
 import { ServicesSection } from './sections/Services';
 import { SkillsSection } from './sections/Skills';
 import { ProjectsSection } from './sections/Projects';
+import { MotionConfig } from 'framer-motion';
 import { Aurora } from './components/Aurora';
 import './index.css';
 
@@ -21,6 +22,7 @@ function App() {
   }, []);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="main-wrapper min-h-screen relative bg-[#0C0C0C] text-[#E2EDF8]">
       {/* Floating Liquid Glass Header */}
       <Navbar />
@@ -38,6 +40,7 @@ function App() {
         <ProjectsSection />
       </main>
     </div>
+    </MotionConfig>
   );
 }
 
