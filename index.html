@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
     <title>portfolio</title>
+    <script>
+      // Cache-bust: when a new version deploys, force one fresh (cache-bypassing)
+      // reload so browsers with aggressive caching (e.g. Brave mobile) can never
+      // keep serving an outdated build.
+      (function () {
+        var V = 'v6';
+        try {
+          var key = 'site-ver';
+          var target = location.pathname + '?v=' + V + location.hash;
+          if (sessionStorage.getItem(key) !== V && location.search.indexOf('v=' + V) === -1) {
+            sessionStorage.setItem(key, V);
+            location.replace(target);
+          }
+        } catch (e) {}
+      })();
+    </script>
     <script type="module" crossorigin src="./assets/index-CcCG6-V0.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CMj-h9RR.css">
   </head>
