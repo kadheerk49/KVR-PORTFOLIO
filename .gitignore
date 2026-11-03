@@ -28,3 +28,6 @@ photo_2026-10-25_*.jpg
 
 # Playwright MCP test artifacts
 .playwright-mcp/
+
+# Local agent skills
+skills/
