@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Github } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Github, Sparkles } from 'lucide-react';
 import { SkillIcon } from './SkillIcon';
 import { LiveProjectButton } from './LiveProjectButton';
 import type { ProjectItem, ProjectStatus } from '../data/portfolio';
@@ -30,7 +30,6 @@ interface ProjectCarouselMobileProps {
 export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [hasInteracted, setHasInteracted] = useState(false);
 
   const updateIndex = useCallback(() => {
     const el = containerRef.current;
@@ -40,7 +39,6 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
     const index = Math.round(scrollLeft / cardWidth);
     const clamped = Math.max(0, Math.min(projects.length - 1, index));
     setActiveIndex(clamped);
-    if (scrollLeft > 20) setHasInteracted(true);
   }, [projects.length]);
 
   useEffect(() => {
@@ -59,7 +57,6 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
       behavior: 'smooth',
     });
     setActiveIndex(index);
-    setHasInteracted(true);
   };
 
   const handlePrev = () => {
@@ -72,139 +69,180 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
 
   return (
     <div className="w-full relative">
-      {/* Swipe prompt hint on initial view */}
-      {!hasInteracted && (
-        <div className="flex items-center justify-center gap-1.5 text-[11px] text-sky-400 font-semibold tracking-wider uppercase mb-3 animate-pulse">
-          <span>Swipe cards</span>
-          <span>↔</span>
+      {/* Prominent interactive guidance banner telling the user to scroll left or right */}
+      <div className="flex flex-col items-center justify-center gap-2 mb-5 px-3 text-center">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/95 border border-sky-400/50 text-xs font-medium text-slate-100 shadow-[0_0_24px_rgba(56,189,248,0.28)] backdrop-blur-xl">
+          <Sparkles size={13} className="text-sky-300 animate-pulse shrink-0" />
+          <span className="tracking-wide">
+            Scroll or swipe <strong className="text-sky-300 font-bold">left / right ↔</strong> to explore
+          </span>
+          <span className="ml-1 px-2 py-0.5 rounded-full bg-sky-400/20 text-[10px] font-mono font-bold text-sky-200 border border-sky-400/40">
+            {activeIndex + 1}/{projects.length}
+          </span>
         </div>
-      )}
+        <p className="text-[11px] text-slate-400 font-medium">
+          Swipe sideways for projects · Scroll up/down to browse other sections
+        </p>
+      </div>
 
-      {/* Snap container — completely horizontal, zero vertical scroll trapping */}
-      <div
-        ref={containerRef}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 pt-1 scroll-smooth no-scrollbar touch-pan-x"
-        style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
-      >
-        {projects.map((project, idx) => {
-          const status = STATUS_STYLES[project.status];
-          const isActive = idx === activeIndex;
+      {/* Snap container with touch-auto and overscroll behavior so vertical gestures scroll the page freely */}
+      <div className="relative">
+        {/* Floating Quick Next Edge Cue (when next projects are available) */}
+        {activeIndex < projects.length - 1 && (
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next project"
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-slate-950/85 backdrop-blur-md border border-sky-400/50 text-sky-300 shadow-[0_0_16px_rgba(56,189,248,0.35)] flex items-center justify-center active:scale-95 transition-all animate-pulse"
+          >
+            <ChevronRight size={22} />
+          </button>
+        )}
 
-          return (
-            <div
-              key={project.number}
-              className={`w-[85vw] max-w-[350px] shrink-0 snap-center rounded-2xl bg-slate-950/90 backdrop-blur-2xl border transition-all duration-300 p-5 shadow-2xl flex flex-col justify-between ${
-                isActive
-                  ? 'border-sky-400/50 shadow-[0_10px_35px_rgba(56,189,248,0.18)] scale-[1.01]'
-                  : 'border-white/15 opacity-85 scale-[0.98]'
-              }`}
-            >
-              <div>
-                {/* Header: Number + Status + Domain */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl font-light text-sky-400 font-mono">
-                      {project.number}
-                    </span>
-                    <span
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[9px] font-bold tracking-[0.16em] uppercase ${status.className}`}
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
-                      {status.label}
+        {/* Floating Quick Prev Edge Cue (when previous projects are available) */}
+        {activeIndex > 0 && (
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous project"
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-slate-950/85 backdrop-blur-md border border-sky-400/50 text-sky-300 shadow-[0_0_16px_rgba(56,189,248,0.35)] flex items-center justify-center active:scale-95 transition-all"
+          >
+            <ChevronLeft size={22} />
+          </button>
+        )}
+
+        <div
+          ref={containerRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 pt-1 scroll-smooth no-scrollbar"
+          style={{
+            scrollSnapType: 'x mandatory',
+            overscrollBehaviorX: 'contain',
+            overscrollBehaviorY: 'auto',
+            touchAction: 'auto',
+          }}
+        >
+          {projects.map((project, idx) => {
+            const status = STATUS_STYLES[project.status];
+            const isActive = idx === activeIndex;
+
+            return (
+              <div
+                key={project.number}
+                className={`w-[85vw] max-w-[350px] shrink-0 snap-center rounded-2xl bg-slate-950/90 backdrop-blur-2xl border transition-all duration-300 p-5 shadow-2xl flex flex-col justify-between ${
+                  isActive
+                    ? 'border-sky-400/50 shadow-[0_10px_35px_rgba(56,189,248,0.2)] scale-[1.01]'
+                    : 'border-white/15 opacity-80 scale-[0.98]'
+                }`}
+                style={{ touchAction: 'auto' }}
+              >
+                <div>
+                  {/* Header: Number + Status + Domain */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-light text-sky-400 font-mono">
+                        {project.number}
+                      </span>
+                      <span
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[9px] font-bold tracking-[0.16em] uppercase ${status.className}`}
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
+                        {status.label}
+                      </span>
+                    </div>
+                    <span className="text-[9px] font-bold tracking-[0.18em] uppercase text-slate-500">
+                      {project.domain}
                     </span>
                   </div>
-                  <span className="text-[9px] font-bold tracking-[0.18em] uppercase text-slate-500">
-                    {project.domain}
-                  </span>
+
+                  {/* Title & Tagline */}
+                  <h3 className="text-xl font-medium text-white tracking-tight mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="accent-gradient-text text-xs font-medium mb-3">
+                    {project.tagline}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+
+                  {/* Metrics 2x2 Grid */}
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    {project.metrics.map((metric) => (
+                      <div
+                        key={metric.label}
+                        className="rounded-xl bg-white/[0.04] border border-white/10 p-2 text-center"
+                      >
+                        <div className="text-sm font-bold accent-gradient-text leading-tight">
+                          {metric.value}
+                        </div>
+                        <div className="text-[8px] font-semibold tracking-wider uppercase text-slate-400 mt-0.5">
+                          {metric.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tech Stack Chips */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.stack.slice(0, 5).map((tech) => (
+                      <span
+                        key={tech}
+                        className="inline-flex items-center gap-1 rounded-md bg-white/[0.05] border border-white/10 px-2 py-1 text-[10px] font-medium text-slate-300"
+                      >
+                        <SkillIcon name={tech} size={11} className="text-sky-300/90 shrink-0" />
+                        {tech}
+                      </span>
+                    ))}
+                    {project.stack.length > 5 && (
+                      <span className="inline-flex items-center rounded-md bg-white/[0.03] border border-white/5 px-1.5 py-1 text-[9px] text-slate-400">
+                        +{project.stack.length - 5}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                {/* Title & Tagline */}
-                <h3 className="text-xl font-medium text-white tracking-tight mb-1">
-                  {project.title}
-                </h3>
-                <p className="accent-gradient-text text-xs font-medium mb-3">
-                  {project.tagline}
-                </p>
-
-                {/* Description */}
-                <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                  {project.description}
-                </p>
-
-                {/* Metrics 2x2 Grid */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                  {project.metrics.map((metric) => (
-                    <div
-                      key={metric.label}
-                      className="rounded-xl bg-white/[0.04] border border-white/10 p-2 text-center"
-                    >
-                      <div className="text-sm font-bold accent-gradient-text leading-tight">
-                        {metric.value}
+                {/* Action Links */}
+                <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
+                  {project.links.map((link) =>
+                    link.external ? (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-full flex items-center justify-center gap-2 rounded-xl bg-sky-400/10 border border-sky-400/40 py-2.5 text-xs font-bold tracking-wider uppercase text-sky-300 active:bg-sky-400/20 active:scale-[0.98] transition-all"
+                      >
+                        <Github size={14} />
+                        {link.label}
+                      </a>
+                    ) : (
+                      <div key={link.label} className="w-full">
+                        <LiveProjectButton href={link.href}>
+                          {link.label}
+                        </LiveProjectButton>
                       </div>
-                      <div className="text-[8px] font-semibold tracking-wider uppercase text-slate-400 mt-0.5">
-                        {metric.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Tech Stack Chips */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.stack.slice(0, 5).map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-flex items-center gap-1 rounded-md bg-white/[0.05] border border-white/10 px-2 py-1 text-[10px] font-medium text-slate-300"
-                    >
-                      <SkillIcon name={tech} size={11} className="text-sky-300/90 shrink-0" />
-                      {tech}
-                    </span>
-                  ))}
-                  {project.stack.length > 5 && (
-                    <span className="inline-flex items-center rounded-md bg-white/[0.03] border border-white/5 px-1.5 py-1 text-[9px] text-slate-400">
-                      +{project.stack.length - 5}
-                    </span>
+                    ),
                   )}
                 </div>
               </div>
-
-              {/* Action Links */}
-              <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
-                {project.links.map((link) =>
-                  link.external ? (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-sky-400/10 border border-sky-400/40 py-2.5 text-xs font-bold tracking-wider uppercase text-sky-300 active:bg-sky-400/20 active:scale-[0.98] transition-all"
-                    >
-                      <Github size={14} />
-                      {link.label}
-                    </a>
-                  ) : (
-                    <div key={link.label} className="w-full">
-                      <LiveProjectButton href={link.href}>
-                        {link.label}
-                      </LiveProjectButton>
-                    </div>
-                  ),
-                )}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* Navigation Controls: Chevrons + Dots + Indicator */}
-      <div className="flex items-center justify-between px-6 pt-2">
+      <div className="flex items-center justify-between px-6 pt-3">
         <button
           type="button"
           onClick={handlePrev}
           disabled={activeIndex === 0}
           aria-label="Previous project"
-          className="h-9 w-9 rounded-full bg-slate-900/80 border border-white/15 text-slate-300 flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none active:scale-95 transition-all"
+          className="h-9 px-3 rounded-full bg-slate-900/80 border border-white/15 text-slate-300 flex items-center gap-1 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none active:scale-95 transition-all"
         >
-          <ChevronLeft size={18} />
+          <ChevronLeft size={16} />
+          <span>Prev</span>
         </button>
 
         {/* Dots + counter */}
@@ -234,9 +272,10 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
           onClick={handleNext}
           disabled={activeIndex === projects.length - 1}
           aria-label="Next project"
-          className="h-9 w-9 rounded-full bg-slate-900/80 border border-white/15 text-slate-300 flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none active:scale-95 transition-all"
+          className="h-9 px-3 rounded-full bg-slate-900/80 border border-white/15 text-slate-300 flex items-center gap-1 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none active:scale-95 transition-all"
         >
-          <ChevronRight size={18} />
+          <span>Next</span>
+          <ChevronRight size={16} />
         </button>
       </div>
     </div>
