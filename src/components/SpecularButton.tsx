@@ -148,6 +148,13 @@ export const SpecularButton = ({
     const fx = fxRef.current;
     if (!btn || !fx) return;
 
+    // Only stand up WebGL where a hover-capable fine pointer exists. Android
+    // Chromium keeps ~8 live WebGL contexts and evicts the oldest; one context
+    // per button evicted the Aurora/GooeyNav contexts, and a lost-context
+    // canvas composites solid white on mobile GPUs (whole-page wash). The
+    // specular shine is a hover effect — touch keeps the CSS glass look.
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
     const dpr = window.devicePixelRatio || 1;
     const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: true, dpr });
     const gl = renderer.gl;

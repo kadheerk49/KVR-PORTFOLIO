@@ -29,7 +29,7 @@ export function HeroSection() {
 
           {/* Kadheer Real Photo Portrait Cutout */}
           <motion.img
-            src="images/kadheer_bright_3d_avatar_transparent.png"
+            src="./images/kadheer_bright_3d_avatar_transparent.png"
             alt="Kadheer Real Photo Portrait"
             className="w-[84vw] max-w-[21.5rem] sm:w-[22rem] md:w-[26rem] lg:w-[29rem] h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)] relative z-10"
             animate={{ y: [-5, 5, -5] }}
@@ -60,7 +60,7 @@ export function HeroSection() {
           }
           .chev:nth-of-type(2) { animation-delay: 0.22s; }
           .chev:nth-of-type(3) { animation-delay: 0.44s; }
-          @keyframes chevFall {
+          @keyframes chevFall {\
             0%   { opacity: 0;    transform: translateY(-4px) scale(0.85); }
             35%  { opacity: 1;    transform: translateY(0)    scale(1); }
             100% { opacity: 0;    transform: translateY(6px)  scale(0.9); }

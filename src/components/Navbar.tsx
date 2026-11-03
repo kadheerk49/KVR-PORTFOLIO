@@ -83,16 +83,18 @@ export function Navbar() {
           scrolled ? 'bg-slate-950/85 backdrop-blur-xl border-b border-white/10 shadow-lg' : 'bg-transparent'
         }`}
       >
-        <a href="#hero" className="hidden md:flex items-center gap-3 group shrink-0">
-          <img
-            src="images/kadheer_bright_3d_avatar_transparent.png"
-            alt="Kadheer avatar"
-            className="w-9 h-9 rounded-full object-cover object-top border border-white/20 group-hover:border-sky-400/50 transition-colors duration-300"
-          />
-          <span className="text-sm font-bold tracking-wide text-white whitespace-nowrap">
-            KADHEER VEL RAJ N
-          </span>
-        </a>
+        {!isMobile && (
+          <a href="#hero" className="hidden md:flex items-center gap-3 group shrink-0">
+            <img
+              src="./images/kadheer_bright_3d_avatar_transparent.png"
+              alt="Kadheer avatar"
+              className="w-9 h-9 rounded-full object-cover object-top border border-white/20 group-hover:border-sky-400/50 transition-colors duration-300"
+            />
+            <span className="text-sm font-bold tracking-wide text-white whitespace-nowrap">
+              KADHEER VEL RAJ N
+            </span>
+          </a>
+        )}
 
         <div className={`flex-1 md:flex-none flex justify-center md:justify-end min-w-0 ${isMobile ? "gooey-mobile" : ""}`}>
           <GooeyNav

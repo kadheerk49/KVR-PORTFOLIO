@@ -114,25 +114,25 @@ export const portfolioData: PortfolioData = {
     text: "I'm a Data Science student at Vellore Institute of Technology, focused on predictive analytics, n8n AI automation, and financial market systems. I build practical workflows, analytical pipelines, and trading tools across Forex, crypto, gold, and crude oil. Based in India, I'm open to projects and collaborations that turn complex data into useful decisions.",
     cornerImages: [
       {
-        src: 'images/about_1.jpg',
+        src: './images/about_1.jpg',
         alt: 'Kadheer Vel Raj N — black and white profile portrait with glasses',
         width: 900,
         height: 995,
       },
       {
-        src: 'images/about_2.jpg',
+        src: './images/about_2.jpg',
         alt: 'Kadheer Vel Raj N — black and white portrait looking down',
         width: 900,
         height: 901,
       },
       {
-        src: 'images/about_3.jpg',
+        src: './images/about_3.jpg',
         alt: 'Kadheer Vel Raj N — black and white outdoor profile portrait',
         width: 700,
         height: 700,
       },
       {
-        src: 'images/about_4.jpg',
+        src: './images/about_4.jpg',
         alt: 'Kadheer Vel Raj N — black and white front portrait',
         width: 900,
         height: 900,
@@ -340,7 +340,7 @@ export const portfolioData: PortfolioData = {
       role: 'Co-inventor',
       summary:
         'A hybrid quantum-classical computing architecture implemented through chiplet-based semiconductor integration: classical processor chiplets, a cryogenic control chiplet and a QPU chiplet interconnected on a silicon interposer with thermal isolation structures and a spectral veto control module that gates quantum instruction execution when signal noise exceeds defined thresholds.',
-      pdf: 'patents/quantum-classical-chiplet-architecture.pdf',
+      pdf: './patents/quantum-classical-chiplet-architecture.pdf',
     },
     {
       number: '02',
@@ -353,7 +353,7 @@ export const portfolioData: PortfolioData = {
       role: 'Co-inventor',
       summary:
         'An AI-driven adaptive lighting system that captures real-time video, detects facial landmarks, gaze direction and head orientation, combines behavioral signals with ambient light intensity, classifies the user into high/medium/low focus states through machine-learning decision logic, and adjusts LED brightness and color temperature over IoT.',
-      pdf: 'patents/adaptive-lighting-focus-detection.pdf',
+      pdf: './patents/adaptive-lighting-focus-detection.pdf',
     },
   ],
   certifications: [
@@ -364,7 +364,7 @@ export const portfolioData: PortfolioData = {
       school: 'School of Electronics Engineering (SENSE)',
       period: 'Sep 2025 - Nov 2025',
       type: 'Value Added Course · Certificate of Participation',
-      pdf: 'certifications/python-data-analysis-vac2006.pdf',
+      pdf: './certifications/python-data-analysis-vac2006.pdf',
     },
   ],
   contacts: [
