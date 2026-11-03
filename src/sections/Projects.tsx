@@ -9,6 +9,7 @@ import { LiveProjectButton } from '../components/LiveProjectButton';
 import { ElectricBorder } from '../components/ElectricBorder';
 import { ScrollStack, ScrollStackItem } from '../components/ScrollStack';
 import { SkillIcon } from '../components/SkillIcon';
+import { ProjectCarouselMobile } from '../components/ProjectCarouselMobile';
 import { portfolioData, type ProjectStatus } from '../data/portfolio';
 
 const STATUS_STYLES: Record<ProjectStatus, { label: string; className: string }> = {
@@ -66,7 +67,14 @@ export function ProjectsSection() {
           </p>
         </FadeIn>
 
-        <ScrollStack>
+        {/* Mobile View: Horizontal 3D Touch Snap Carousel — Zero vertical scroll jamming */}
+        <div className="block md:hidden">
+          <ProjectCarouselMobile projects={portfolioData.projects} />
+        </div>
+
+        {/* Desktop View: Cinematic 3D Sticky Scroll Deck */}
+        <div className="hidden md:block">
+          <ScrollStack>
           {portfolioData.projects.map((project) => {
             const status = STATUS_STYLES[project.status];
             return (
@@ -76,7 +84,7 @@ export function ProjectsSection() {
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="bg-slate-950/90 backdrop-blur-2xl p-4 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border border-white/20 hover:border-white/40 transition-colors duration-300 shadow-2xl max-h-[calc(100dvh-5rem)] overflow-y-auto no-scrollbar">
+                  className="bg-slate-950/90 backdrop-blur-2xl p-8 lg:p-10 rounded-3xl border border-white/20 hover:border-white/40 transition-colors duration-300 shadow-2xl">
                   {/* header row */}
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-6">
                     <span className="text-2xl sm:text-4xl font-light text-sky-400">
@@ -174,7 +182,8 @@ export function ProjectsSection() {
               </ScrollStackItem>
             );
           })}
-        </ScrollStack>
+          </ScrollStack>
+        </div>
 
         {/* Patents — filed & published Indian patent applications */}
         <FadeIn delay={0.3} duration={0.8} y={40}>
