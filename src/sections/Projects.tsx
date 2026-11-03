@@ -260,7 +260,7 @@ export function ProjectsSection() {
 
         {/* Certifications */}
         <FadeIn delay={0.3} duration={0.8} y={40}>
-          <div className="mt-24">
+          <div id="certifications" className="mt-24 scroll-mt-24">
             <h3 className="text-3xl sm:text-4xl font-light text-white text-center tracking-tight mb-3 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
               Certifications
             </h3>
@@ -421,7 +421,7 @@ export function ProjectsSection() {
                           </span>
                         </a>
                         <a
-                          href={portfolioData.contacts.find((c) => c.label === 'LinkedIn')?.href || 'https://www.linkedin.com/in/kadheer-vel-raj'}
+                          href={portfolioData.contacts.find((c) => c.label === 'LinkedIn')?.href || 'https://www.linkedin.com/in/kadheer-vel-raj-3419b2381/'}
                           target="_blank"
                           rel="noreferrer"
                           className="flex items-center gap-4 group"

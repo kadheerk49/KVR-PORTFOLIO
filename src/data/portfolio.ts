@@ -370,7 +370,7 @@ export const portfolioData: PortfolioData = {
   contacts: [
     {
       label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/kadheer-vel-raj',
+      href: 'https://www.linkedin.com/in/kadheer-vel-raj-3419b2381/',
     },
     {
       label: 'GitHub',
