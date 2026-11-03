@@ -1,4 +1,4 @@
-import React, { type ReactNode, useEffect, useRef } from 'react';
+import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 
 export interface ScrollStackItemProps {
   itemClassName?: string;
@@ -13,23 +13,33 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
   index = 0,
   style
 }) => {
-  // Sticky top offset calculated for each stacked card
-  const stickyTop = 100 + index * 24;
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  // Sticky top offset calculated for each stacked card on desktop
+  const stickyTop = 90 + index * 22;
 
   return (
     <div
       data-stack-item
-      className={`sticky w-full transition-[top] duration-300 ${itemClassName}`.trim()}
+      className={`relative md:sticky w-full transition-[top] duration-300 ${itemClassName}`.trim()}
       style={{
-        top: `${stickyTop}px`,
-        zIndex: index + 1,
+        top: isDesktop ? `${stickyTop}px` : undefined,
+        zIndex: isDesktop ? index + 1 : undefined,
         transformOrigin: 'top center',
         ...style
       }}
     >
-      {/* Recession wrapper: the stack engine scales/dims this as the next
-          card slides over, so stuck cards visibly recede instead of piling
-          up as flat overlapping rectangles (the mobile glitch). */}
+      {/* Recession wrapper: on desktop (>= md), the stack engine scales/dims this as the next
+          card slides over, so stuck cards visibly recede. On mobile (< md), cards scroll naturally
+          in normal document flow so all components remain completely visible without overlapping. */}
       <div data-stack-recession className="will-change-transform" style={{ transformOrigin: 'top center' }}>
         {children}
       </div>
@@ -48,10 +58,11 @@ export const ScrollStack: React.FC<ScrollStackProps> = ({
 }) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
-  // Stack engine: for every card except the last, measure how far the next
-  // card has travelled from the viewport bottom toward this card's sticky
-  // position, and recess the card accordingly (scale down + dim). Pure
-  // position math per scroll frame — no transitions, no skipped states.
+  // Stack engine: active only on desktop (>= 768px).
+  // For every card except the last, measure how far the next card has travelled
+  // toward this card's sticky position and recess the card (scale down + dim).
+  // On mobile (< 768px), cards are kept in natural vertical flow to prevent
+  // tall mobile cards from overlapping or cutting off components.
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -62,17 +73,18 @@ export const ScrollStack: React.FC<ScrollStackProps> = ({
     let raf = 0;
 
     const update = () => {
+      const isDesktop = window.matchMedia('(min-width: 768px)').matches;
       const vh = window.innerHeight;
       items.forEach((item, i) => {
         const card = cards[i];
         if (!card) return;
-        if (reduce || i === items.length - 1) {
+        if (!isDesktop || reduce || i === items.length - 1) {
           card.style.transform = '';
           card.style.filter = '';
           return;
         }
         const next = items[i + 1];
-        const stickyTop = parseFloat(item.style.top) || 100;
+        const stickyTop = parseFloat(item.style.top) || 90;
         const nextTop = next.getBoundingClientRect().top;
         const progress = Math.min(1, Math.max(0, (vh - nextTop) / Math.max(1, vh - stickyTop)));
         const eased = progress * progress * (3 - 2 * progress);
@@ -99,7 +111,7 @@ export const ScrollStack: React.FC<ScrollStackProps> = ({
   }, []);
 
   return (
-    <div ref={rootRef} className={`relative w-full flex flex-col gap-12 pb-16 ${className}`.trim()}>
+    <div ref={rootRef} className={`relative w-full flex flex-col gap-8 md:gap-12 pb-16 ${className}`.trim()}>
       {React.Children.map(children, (child, idx) => {
         if (React.isValidElement<ScrollStackItemProps>(child)) {
           return React.cloneElement(child, { index: idx });

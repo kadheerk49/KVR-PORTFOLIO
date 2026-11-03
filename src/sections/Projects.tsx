@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, FileText, Github, Mail, Send, User, X } from 'lucide-react';
+import { Award, ExternalLink, FileText, Github, Linkedin, Mail, Send, User, X } from 'lucide-react';
 import { SiGithub, SiReddit, SiTelegram } from 'react-icons/si';
 import { FadeIn } from '../components/FadeIn';
 import BorderGlow from '../components/BorderGlow';
@@ -420,6 +420,19 @@ export function ProjectsSection() {
                             kadheerk49@gmail.com
                           </span>
                         </a>
+                        <a
+                          href={portfolioData.contacts.find((c) => c.label === 'LinkedIn')?.href || 'https://www.linkedin.com/in/kadheer-vel-raj'}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-4 group"
+                        >
+                          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900/80 border border-white/15 text-sky-300 group-hover:border-sky-400/50 group-hover:text-sky-200 transition-all duration-300">
+                            <Linkedin size={18} />
+                          </span>
+                          <span className="text-sm sm:text-base text-slate-200 group-hover:text-white transition-colors duration-300">
+                            LinkedIn — Kadheer Vel Raj N
+                          </span>
+                        </a>
                         <a href="https://t.me/skull_420" target="_blank" rel="noreferrer" className="flex items-center gap-4 group">
                           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900/80 border border-white/15 text-sky-300 group-hover:border-sky-400/50 group-hover:text-sky-200 transition-all duration-300">
                             <Send size={18} />
@@ -436,7 +449,8 @@ export function ProjectsSection() {
                       <div className="flex flex-wrap gap-3">
                         {portfolioData.contacts.map((contact) => {
                           const Icon =
-                            contact.label === 'GitHub' ? SiGithub
+                            contact.label === 'LinkedIn' ? Linkedin
+                            : contact.label === 'GitHub' ? SiGithub
                             : contact.label === 'Reddit' ? SiReddit
                             : contact.label === 'Telegram' ? SiTelegram
                             : contact.label === 'Email' ? Mail
