@@ -76,57 +76,57 @@ export function ProjectsSection() {
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="bg-slate-950/90 backdrop-blur-2xl p-5 sm:p-8 lg:p-10 rounded-3xl border border-white/20 hover:border-white/40 transition-colors duration-300 shadow-2xl">
+                  className="bg-slate-950/90 backdrop-blur-2xl p-4 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border border-white/20 hover:border-white/40 transition-colors duration-300 shadow-2xl max-h-[calc(100dvh-5rem)] overflow-y-auto no-scrollbar">
                   {/* header row */}
-                  <div className="flex flex-wrap items-center gap-3 mb-5 sm:mb-6">
-                    <span className="text-3xl sm:text-4xl font-light text-sky-400">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-6">
+                    <span className="text-2xl sm:text-4xl font-light text-sky-400">
                       {project.number}
                     </span>
-                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[10px] font-bold tracking-[0.18em] uppercase ${status.className}`}>
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase ${status.className}`}>
                       <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
                       {status.label}
                     </span>
-                    <span className="ml-auto hidden sm:inline text-[10px] font-bold tracking-[0.25em] uppercase text-slate-500">
+                    <span className="ml-auto inline text-[9px] sm:text-[10px] font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase text-slate-500">
                       {project.domain}
                     </span>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 items-start">
+                  <div className="flex flex-col lg:flex-row gap-4 sm:gap-10 items-start">
                     {/* content column */}
                     <div className="w-full min-w-0">
-                      <h3 className="text-2xl sm:text-3xl font-medium text-white tracking-wide mb-1.5">
+                      <h3 className="text-xl sm:text-3xl font-medium text-white tracking-wide mb-1 sm:mb-1.5">
                         {project.title}
                       </h3>
-                      <p className="accent-gradient-text text-sm sm:text-[15px] font-medium mb-4">
+                      <p className="accent-gradient-text text-xs sm:text-[15px] font-medium mb-2.5 sm:mb-4">
                         {project.tagline}
                       </p>
-                      <p className="text-sm sm:text-[15px] text-slate-300 leading-relaxed mb-5">
+                      <p className="text-xs sm:text-[15px] text-slate-300 leading-relaxed mb-3 sm:mb-5">
                         {project.description}
                       </p>
 
                       {/* highlights */}
-                      <ul className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-2 mb-6">
+                      <ul className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-1.5 sm:gap-y-2 mb-3.5 sm:mb-6">
                         {project.highlights.map((highlight) => (
-                          <li key={highlight} className="flex gap-2.5 text-[13px] sm:text-sm text-slate-300 leading-relaxed">
-                            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400/80" />
+                          <li key={highlight} className="flex gap-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400/80" />
                             {highlight}
                           </li>
                         ))}
                       </ul>
 
                       {/* metrics */}
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 mb-3.5 sm:mb-6">
                         {project.metrics.map((metric) => (
                           <motion.div
                             key={metric.label}
                             whileHover={{ y: -3 }}
                             transition={{ duration: 0.25 }}
-                            className="rounded-xl bg-white/[0.04] border border-white/10 px-3 py-2.5"
+                            className="rounded-xl bg-white/[0.04] border border-white/10 px-2.5 py-2 sm:px-3 sm:py-2.5"
                           >
-                            <div className="text-base sm:text-lg font-bold accent-gradient-text leading-tight">
+                            <div className="text-sm sm:text-lg font-bold accent-gradient-text leading-tight">
                               {metric.value}
                             </div>
-                            <div className="text-[9.5px] font-semibold tracking-[0.12em] uppercase text-slate-500 mt-0.5">
+                            <div className="text-[8.5px] sm:text-[9.5px] font-semibold tracking-[0.12em] uppercase text-slate-500 mt-0.5">
                               {metric.label}
                             </div>
                           </motion.div>
@@ -134,20 +134,20 @@ export function ProjectsSection() {
                       </div>
 
                       {/* stack chips */}
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3.5 sm:mb-6">
                         {project.stack.map((tech) => (
                           <span
                             key={tech}
-                            className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.05] border border-white/10 px-2.5 py-1.5 text-[11.5px] font-medium text-slate-300"
+                            className="inline-flex items-center gap-1 sm:gap-1.5 rounded-lg bg-white/[0.05] border border-white/10 px-2 py-1 sm:px-2.5 sm:py-1.5 text-[10.5px] sm:text-[11.5px] font-medium text-slate-300"
                           >
-                            <SkillIcon name={tech} size={14} className="text-sky-300/90 shrink-0" />
+                            <SkillIcon name={tech} size={13} className="text-sky-300/90 shrink-0" />
                             {tech}
                           </span>
                         ))}
                       </div>
 
                       {/* links */}
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2.5 sm:gap-3">
                         {project.links.map((link) =>
                           link.external ? (
                             <a
@@ -155,9 +155,9 @@ export function ProjectsSection() {
                               href={link.href}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-2 rounded-full bg-sky-400/10 border border-sky-400/40 px-5 py-2.5 text-xs font-bold tracking-[0.12em] uppercase text-sky-300 transition-all duration-300 hover:bg-sky-400/20 hover:text-white hover:-translate-y-0.5"
+                              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-sky-400/10 border border-sky-400/40 px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-xs font-bold tracking-[0.12em] uppercase text-sky-300 transition-all duration-300 hover:bg-sky-400/20 hover:text-white hover:-translate-y-0.5"
                             >
-                              <Github size={15} />
+                              <Github size={14} />
                               {link.label}
                             </a>
                           ) : (
