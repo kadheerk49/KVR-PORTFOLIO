@@ -60,7 +60,7 @@ export function HeroSection() {
           }
           .chev:nth-of-type(2) { animation-delay: 0.22s; }
           .chev:nth-of-type(3) { animation-delay: 0.44s; }
-          @keyframes chevFall {\
+          @keyframes chevFall {
             0%   { opacity: 0;    transform: translateY(-4px) scale(0.85); }
             35%  { opacity: 1;    transform: translateY(0)    scale(1); }
             100% { opacity: 0;    transform: translateY(6px)  scale(0.9); }
@@ -96,7 +96,7 @@ export function HeroSection() {
           </p>
         </motion.div>
 
-        {/* Right Action CTA Buttons */}
+        {/* Right Action CTA Buttons — Symmetrical Geometry & Unified Cyan Theme */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -106,20 +106,20 @@ export function HeroSection() {
           <SpecularButton
             href="#projects"
             size="md"
-            radius={28}
+            radius={26}
             tint="#ffffff"
             tintOpacity={0.08}
             blur={10}
-            textColor="#f8fafc"
+            textColor="#ffffff"
             lineColor="#38BDF8"
-            baseColor="#1e293b"
+            baseColor="#0b1329"
             intensity={1.3}
             shineSize={18}
             shineFade={35}
             thickness={1.5}
             speed={0.35}
             autoAnimate={true}
-            className="flex-1 sm:flex-initial"
+            className="flex-1 sm:flex-initial !px-4 sm:!px-8 !py-2.5 sm:!py-3.5 !text-xs sm:!text-sm font-bold tracking-wider uppercase text-center whitespace-nowrap"
           >
             VIEW PROJECTS
           </SpecularButton>
@@ -127,20 +127,20 @@ export function HeroSection() {
           <SpecularButton
             href="#contact"
             size="md"
-            radius={30}
+            radius={26}
             tint="#ffffff"
-            tintOpacity={0.15}
-            blur={12}
-            textColor="#ffffff"
-            lineColor="#E087FF"
-            baseColor="#4c1d95"
-            intensity={1.6}
-            shineSize={22}
-            shineFade={40}
-            thickness={1.8}
-            speed={0.4}
+            tintOpacity={0.06}
+            blur={10}
+            textColor="#e2e8f0"
+            lineColor="#38BDF8"
+            baseColor="#1e293b"
+            intensity={1.1}
+            shineSize={18}
+            shineFade={35}
+            thickness={1.5}
+            speed={0.35}
             autoAnimate={true}
-            className="flex-1 sm:flex-initial"
+            className="flex-1 sm:flex-initial !px-4 sm:!px-8 !py-2.5 sm:!py-3.5 !text-xs sm:!text-sm font-bold tracking-wider uppercase text-center whitespace-nowrap"
           >
             CONTACT ME
           </SpecularButton>

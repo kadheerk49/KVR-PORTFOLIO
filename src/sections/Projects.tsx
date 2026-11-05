@@ -1,11 +1,10 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, FileText, Github, Linkedin, Mail, Send, User, X } from 'lucide-react';
+import { Award, ExternalLink, FileText, Github, Linkedin, Mail, MessageSquare, Send, User, X } from 'lucide-react';
 import { SiGithub, SiReddit, SiTelegram } from 'react-icons/si';
 import { FadeIn } from '../components/FadeIn';
 import BorderGlow from '../components/BorderGlow';
 import SpecularButton from '../components/SpecularButton';
-import { LiveProjectButton } from '../components/LiveProjectButton';
 import { ElectricBorder } from '../components/ElectricBorder';
 import { ScrollStack, ScrollStackItem } from '../components/ScrollStack';
 import { SkillIcon } from '../components/SkillIcon';
@@ -163,15 +162,20 @@ export function ProjectsSection() {
                               href={link.href}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-sky-400/10 border border-sky-400/40 px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-xs font-bold tracking-[0.12em] uppercase text-sky-300 transition-all duration-300 hover:bg-sky-400/20 hover:text-white hover:-translate-y-0.5"
+                              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-sky-400/15 border border-sky-400/40 px-5 py-2.5 text-xs font-bold tracking-[0.12em] uppercase text-sky-200 transition-all duration-300 hover:bg-sky-400/25 hover:border-sky-400/60 hover:text-white hover:-translate-y-0.5 shadow-[0_4px_16px_rgba(56,189,248,0.15)]"
                             >
                               <Github size={14} />
                               {link.label}
                             </a>
                           ) : (
-                            <LiveProjectButton key={link.label} href={link.href}>
+                            <a
+                              key={link.label}
+                              href={link.href}
+                              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/[0.06] border border-white/15 px-5 py-2.5 text-xs font-bold tracking-[0.12em] uppercase text-slate-200 transition-all duration-300 hover:border-sky-400/50 hover:text-white hover:-translate-y-0.5"
+                            >
+                              <MessageSquare size={14} className="text-sky-300" />
                               {link.label}
-                            </LiveProjectButton>
+                            </a>
                           ),
                         )}
                       </div>

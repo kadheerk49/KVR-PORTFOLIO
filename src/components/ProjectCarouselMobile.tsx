@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Github, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Github, MessageSquare, Sparkles } from 'lucide-react';
 import { SkillIcon } from './SkillIcon';
-import { LiveProjectButton } from './LiveProjectButton';
 import type { ProjectItem, ProjectStatus } from '../data/portfolio';
 
 const STATUS_STYLES: Record<ProjectStatus, { label: string; className: string }> = {
@@ -128,14 +127,14 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
             return (
               <div
                 key={project.number}
-                className={`w-[85vw] max-w-[350px] shrink-0 snap-center rounded-2xl bg-slate-950/90 backdrop-blur-2xl border transition-all duration-300 p-5 shadow-2xl flex flex-col justify-between ${
+                className={`w-[85vw] max-w-[350px] shrink-0 snap-center rounded-2xl bg-slate-950/90 backdrop-blur-2xl border transition-all duration-300 p-5 shadow-2xl flex flex-col justify-between min-h-[480px] ${
                   isActive
                     ? 'border-sky-400/50 shadow-[0_10px_35px_rgba(56,189,248,0.2)] scale-[1.01]'
                     : 'border-white/15 opacity-80 scale-[0.98]'
                 }`}
                 style={{ touchAction: 'auto' }}
               >
-                <div>
+                <div className="flex flex-col flex-1">
                   {/* Header: Number + Status + Domain */}
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-2">
@@ -185,7 +184,7 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
                   </div>
 
                   {/* Tech Stack Chips */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
                     {project.stack.slice(0, 5).map((tech) => (
                       <span
                         key={tech}
@@ -203,8 +202,8 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
                   </div>
                 </div>
 
-                {/* Action Links */}
-                <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
+                {/* Action Links — Consistent height & primary/secondary hierarchy */}
+                <div className="flex items-center gap-2 pt-3 border-t border-white/10 mt-auto">
                   {project.links.map((link) =>
                     link.external ? (
                       <a
@@ -212,17 +211,20 @@ export function ProjectCarouselMobile({ projects }: ProjectCarouselMobileProps) 
                         href={link.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="w-full flex items-center justify-center gap-2 rounded-xl bg-sky-400/10 border border-sky-400/40 py-2.5 text-xs font-bold tracking-wider uppercase text-sky-300 active:bg-sky-400/20 active:scale-[0.98] transition-all"
+                        className="flex-1 h-10 px-3 flex items-center justify-center gap-1.5 rounded-xl bg-sky-400/15 border border-sky-400/50 text-[11px] font-bold tracking-wider uppercase text-sky-200 hover:bg-sky-400/25 active:bg-sky-400/30 active:scale-[0.98] transition-all shadow-[0_2px_12px_rgba(56,189,248,0.15)]"
                       >
-                        <Github size={14} />
-                        {link.label}
+                        <Github size={13} className="shrink-0" />
+                        <span className="truncate">{link.label}</span>
                       </a>
                     ) : (
-                      <div key={link.label} className="w-full">
-                        <LiveProjectButton href={link.href}>
-                          {link.label}
-                        </LiveProjectButton>
-                      </div>
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        className="flex-1 h-10 px-3 flex items-center justify-center gap-1.5 rounded-xl bg-white/[0.06] border border-white/15 text-[11px] font-bold tracking-wider uppercase text-slate-200 hover:border-sky-400/40 hover:text-white active:scale-[0.98] transition-all"
+                      >
+                        <MessageSquare size={13} className="text-sky-300 shrink-0" />
+                        <span className="truncate">{link.label}</span>
+                      </a>
                     ),
                   )}
                 </div>
