@@ -88,6 +88,7 @@ export interface PortfolioData {
   };
   about: {
     text: string;
+    highlight: string;
     cornerImages: ProjectImage[];
   };
   services: ServiceItem[];
@@ -98,55 +99,61 @@ export interface PortfolioData {
   contacts: ContactItem[];
 }
 
-// Main portfolio data
 export const portfolioData: PortfolioData = {
   nav: [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Services', href: '#services' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' }],
+    { label: 'ABOUT', href: '#about' },
+    { label: 'SKILLS', href: '#skills' },
+    { label: 'SERVICES', href: '#services' },
+    { label: 'PROJECTS', href: '#projects' },
+    { label: 'CERTS', href: '#certifications' },
+    { label: 'CONTACT', href: '#contact' },
+  ],
   hero: {
-    heading: "Hi, I'm Kadheer",
-    subtitle: 'a data science creator building intelligent automation and financial market systems',
+    heading: 'KADHEER VEL RAJ N',
+    subtitle:
+      'A DATA SCIENCE CREATOR DRIVEN BY CRAFTING STRIKING INTELLIGENT AUTOMATION AND FINANCIAL MARKET SYSTEMS',
   },
   about: {
-    text: "I'm a Data Science student at Vellore Institute of Technology, focused on predictive analytics, n8n AI automation, and financial market systems. I build practical workflows, analytical pipelines, and trading tools across Forex, crypto, gold, and crude oil. Based in India, I'm open to projects and collaborations that turn complex data into useful decisions.",
+    text: 'A computer science and data science scholar bridging predictive models, automated business operations, and financial market execution. Deep domain expertise in machine learning, algorithmic trading workflows, and interactive software development.',
+    highlight:
+      'Specialized in end-to-end multi-agent orchestration via n8n, deep-learning based predictive architectures, and technical price-action analytics across global forex, crypto, and commodity markets.',
     cornerImages: [
       {
         src: './images/about_1.jpg',
-        alt: 'Kadheer Vel Raj N — black and white profile portrait with glasses',
-        width: 900,
-        height: 995,
+        alt: 'Kadheer Vel Raj portrait 1',
+        width: 600,
+        height: 800,
+        eager: true,
       },
       {
         src: './images/about_2.jpg',
-        alt: 'Kadheer Vel Raj N — black and white portrait looking down',
-        width: 900,
-        height: 901,
+        alt: 'Kadheer Vel Raj portrait 2',
+        width: 600,
+        height: 800,
       },
       {
         src: './images/about_3.jpg',
-        alt: 'Kadheer Vel Raj N — black and white outdoor profile portrait',
-        width: 700,
-        height: 700,
+        alt: 'Kadheer Vel Raj portrait 3',
+        width: 600,
+        height: 800,
       },
       {
         src: './images/about_4.jpg',
-        alt: 'Kadheer Vel Raj N — black and white front portrait',
-        width: 900,
-        height: 900,
-      }],
+        alt: 'Kadheer Vel Raj portrait 4',
+        width: 600,
+        height: 800,
+      },
+    ],
   },
   services: [
     {
       number: '01',
-      title: 'Data Science & Analytics',
-      description: 'Python, Pandas, SQL, exploratory analysis, visualization, predictive modeling, and machine-learning workflows.',
+      title: 'Machine Learning & Predictive Systems',
+      description: 'End-to-end model development: classification, regression, NLP, and deep neural networks designed for real-world operations.',
     },
     {
       number: '02',
-      title: 'n8n AI Automation',
+      title: 'Intelligent AI Automation Workflows',
       description: 'n8n pipelines connecting LLMs, webhooks, APIs, Telegram bots, and automated task execution.',
     },
     {
@@ -358,6 +365,15 @@ export const portfolioData: PortfolioData = {
   ],
   certifications: [
     {
+      title: 'n8n Quickstart Course (QS101)',
+      code: 'QS101',
+      issuer: 'n8n',
+      school: 'n8n Education Team',
+      period: 'Nov 2026',
+      type: 'Official Certification of Completion',
+      pdf: './certifications/n8n-quickstart-qs101.pdf',
+    },
+    {
       title: 'Python for Data Analysis and Visualization',
       code: 'VAC2006',
       issuer: 'Vellore Institute of Technology',
@@ -387,5 +403,6 @@ export const portfolioData: PortfolioData = {
     {
       label: 'Telegram',
       href: 'https://t.me/skull_420',
-    }],
+    },
+  ],
 };
