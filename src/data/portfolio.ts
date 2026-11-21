@@ -283,7 +283,10 @@ export const portfolioData: PortfolioData = {
         { value: '97.3%', label: 'SM Occupancy' },
       ],
       stack: ['CUDA', 'C++', 'Python', 'pandas', 'TradingView'],
-      links: [{ label: 'Discuss Project', href: '#contact' }],
+      links: [
+        { label: 'View on GitHub', href: 'https://github.com/Prasath-27706/Kernel-Fusion-in-GPU', external: true },
+        { label: 'Discuss Project', href: '#contact' },
+      ],
     },
     {
       number: '04',
@@ -306,7 +309,10 @@ export const portfolioData: PortfolioData = {
         { value: 'LLM', label: 'Grounded Tutor' },
       ],
       stack: ['Kotlin', 'ARCore', 'Claude', 'Gemini CLI', 'TypeScript'],
-      links: [{ label: 'Discuss Project', href: '#contact' }],
+      links: [
+        { label: 'View on GitHub', href: 'https://github.com/kadheerk49/AnatoLens', external: true },
+        { label: 'Discuss Project', href: '#contact' },
+      ],
     },
     {
       number: '05',

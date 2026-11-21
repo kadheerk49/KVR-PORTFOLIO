@@ -1,6 +1,6 @@
 import { FadeIn } from '../components/FadeIn';
 import {
-  BarChart3,
+  Brain,
   Workflow,
   CandlestickChart,
   Bitcoin,
@@ -10,7 +10,9 @@ import {
 import { portfolioData } from '../data/portfolio';
 
 const serviceIcons: Record<string, LucideIcon> = {
-  'Data Science & Analytics': BarChart3,
+  'Machine Learning & Predictive Systems': Brain,
+  'Data Science & Analytics': Brain,
+  'Intelligent AI Automation Workflows': Workflow,
   'n8n AI Automation': Workflow,
   'Forex Trading Systems': CandlestickChart,
   'Crypto Market Analytics': Bitcoin,
