@@ -13,6 +13,8 @@ import {
   Layers,
   Cpu,
   Eye,
+  RotateCw,
+  RotateCcw,
 } from 'lucide-react';
 import type { PatentItem } from '../data/portfolio';
 
@@ -24,7 +26,7 @@ interface PatentVaultProps {
 type TabKey = 'abstract' | 'claims' | 'docket';
 
 /**
- * Interactive 3D Holographic Patent Card with spring physics tilt & parallax layers.
+ * Desktop: Interactive 3D Holographic Patent Card with spring physics tilt & parallax layers.
  */
 function HolographicPatentCard({
   patent,
@@ -126,9 +128,7 @@ function HolographicPatentCard({
           className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl ${theme.glow} pointer-events-none rounded-tr-3xl`}
         />
 
-        {/* ============================================================== */}
-        {/* LAYER 1: Header Bar & Holographic Official IPO Seal (translateZ: 30px) */}
-        {/* ============================================================== */}
+        {/* Header Bar & Holographic Official IPO Seal */}
         <div style={{ transform: 'translateZ(30px)' }} className="relative z-10 mb-5">
           <div className="flex items-center justify-between gap-3 pb-4 border-b border-white/[0.08]">
             <div className="flex items-center gap-2.5">
@@ -162,9 +162,7 @@ function HolographicPatentCard({
           </div>
         </div>
 
-        {/* ============================================================== */}
-        {/* LAYER 2: Title, Domain & Subsystem (translateZ: 45px)          */}
-        {/* ============================================================== */}
+        {/* Title, Domain & Subsystem */}
         <div style={{ transform: 'translateZ(45px)' }} className="relative z-10 mb-5">
           <span className={`text-[11px] font-mono uppercase tracking-[0.2em] font-medium block mb-2 ${theme.accentText}`}>
             {patent.subsystem}
@@ -186,9 +184,7 @@ function HolographicPatentCard({
           </div>
         </div>
 
-        {/* ============================================================== */}
-        {/* LAYER 3: Kinetic Inspection Tabs (translateZ: 25px)            */}
-        {/* ============================================================== */}
+        {/* Kinetic Inspection Tabs */}
         <div style={{ transform: 'translateZ(25px)' }} className="relative z-10 mb-6 flex-1 flex flex-col justify-between">
           {/* Tab Selector Buttons */}
           <div className="flex items-center gap-1 p-1 rounded-xl bg-white/[0.03] border border-white/10 mb-4">
@@ -226,7 +222,7 @@ function HolographicPatentCard({
             })}
           </div>
 
-          {/* Tab Content Panels with Smooth Spring Morphing */}
+          {/* Tab Content Panels */}
           <div className="min-h-[170px] flex items-center">
             <AnimatePresence mode="wait">
               {activeTab === 'abstract' && (
@@ -314,9 +310,7 @@ function HolographicPatentCard({
           </div>
         </div>
 
-        {/* ============================================================== */}
-        {/* LAYER 4: Action Inspection Button (translateZ: 40px)          */}
-        {/* ============================================================== */}
+        {/* Action Inspection Button */}
         <div style={{ transform: 'translateZ(40px)' }} className="relative z-10 pt-4 border-t border-white/[0.08]">
           <button
             type="button"
@@ -334,16 +328,253 @@ function HolographicPatentCard({
 }
 
 /**
+ * Mobile-Specific: Interactive 3D Double-Sided Flippable Patent Dossier Card
+ * Allows user to physically flip between Overview and Technical Claims in 3D on mobile.
+ */
+function MobileFlippablePatentCard({
+  patent,
+  onOpenPdf,
+}: {
+  patent: PatentItem;
+  onOpenPdf: () => void;
+}) {
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+
+  const isCyan = patent.accent === 'cyan';
+  const theme = isCyan
+    ? {
+        accent: '#00F0FF',
+        accentText: 'text-cyan-400',
+        badgeBg: 'bg-cyan-500/10',
+        badgeBorder: 'border-cyan-500/30',
+        glow: 'from-cyan-500/[0.1] via-sky-500/[0.04] to-transparent',
+        Icon: Cpu,
+      }
+    : {
+        accent: '#F59E0B',
+        accentText: 'text-amber-400',
+        badgeBg: 'bg-amber-500/10',
+        badgeBorder: 'border-amber-500/30',
+        glow: 'from-amber-500/[0.1] via-orange-500/[0.04] to-transparent',
+        Icon: Eye,
+      };
+
+  const MainIcon = theme.Icon;
+
+  return (
+    <div className="w-full [perspective:1400px]">
+      <motion.div
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        style={{ transformStyle: 'preserve-3d' }}
+        className="relative w-full min-h-[520px]"
+      >
+        {/* ========================================================== */}
+        {/* FRONT FACE: Architecture Overview & Abstract               */}
+        {/* ========================================================== */}
+        <div
+          style={{
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+          }}
+          className="w-full rounded-3xl bg-slate-950/95 backdrop-blur-2xl border border-white/15 p-6 shadow-2xl flex flex-col justify-between relative overflow-hidden"
+        >
+          {/* Ambient Glow */}
+          <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${theme.glow} pointer-events-none rounded-tr-3xl`} />
+
+          <div>
+            {/* Top Bar */}
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border bg-white/[0.04] border-white/10">
+                  <MainIcon size={17} className={theme.accentText} />
+                </span>
+                <div>
+                  <span className="block text-[9.5px] font-mono uppercase tracking-[0.2em] text-slate-400">
+                    DOCKET #{patent.number}
+                  </span>
+                  <span className="text-xs font-mono font-bold tracking-wider text-slate-200">
+                    {patent.publicationNo}
+                  </span>
+                </div>
+              </div>
+
+              {/* Flip Button in Top Right */}
+              <motion.button
+                type="button"
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsFlipped(true)}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10.5px] font-mono tracking-wider cursor-pointer ${theme.badgeBg} ${theme.badgeBorder} ${theme.accentText}`}
+              >
+                <RotateCw size={11} className="animate-spin-slow" />
+                <span>Claims ↻</span>
+              </motion.button>
+            </div>
+
+            {/* Subsystem & Title */}
+            <span className={`text-[10px] font-mono uppercase tracking-[0.18em] font-semibold block mb-1.5 ${theme.accentText}`}>
+              {patent.subsystem}
+            </span>
+            <h4 className="text-lg font-normal text-white leading-snug tracking-tight mb-2.5">
+              {patent.title}
+            </h4>
+
+            {/* Attribution */}
+            <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+              <span className="text-slate-300 truncate">{patent.applicant}</span>
+              <span>•</span>
+              <span className="font-mono text-[11px] text-slate-300">Co-inventor</span>
+            </div>
+
+            {/* Abstract */}
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+              {patent.summary}
+            </p>
+          </div>
+
+          {/* Bottom Actions */}
+          <div className="pt-4 border-t border-white/10 mt-5 space-y-2.5">
+            {/* Flip prompt button */}
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setIsFlipped(true)}
+              className="w-full py-2.5 px-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center gap-2 text-xs font-mono text-slate-300 cursor-pointer transition-colors"
+            >
+              <RotateCw size={12} className={theme.accentText} />
+              <span>Tap to Flip: View System Claims &amp; Registry</span>
+            </motion.button>
+
+            {/* PDF Inspector Button */}
+            <button
+              type="button"
+              onClick={onOpenPdf}
+              className={`w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border font-semibold text-xs tracking-wider uppercase transition-all duration-200 active:scale-[0.98] cursor-pointer ${theme.badgeBg} ${theme.badgeBorder} ${theme.accentText} hover:bg-white/10`}
+            >
+              <FileText size={14} />
+              <span>Examine Official PDF</span>
+              <ArrowUpRight size={13} className="opacity-70" />
+            </button>
+          </div>
+        </div>
+
+        {/* ========================================================== */}
+        {/* BACK FACE: Technical Claims & Verified Registry Docket     */}
+        {/* ========================================================== */}
+        <div
+          style={{
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)',
+          }}
+          className="absolute inset-0 w-full h-full rounded-3xl bg-slate-950/95 backdrop-blur-2xl border border-white/15 p-6 shadow-2xl flex flex-col justify-between overflow-hidden"
+        >
+          {/* Ambient Glow */}
+          <div className={`absolute top-0 left-0 w-64 h-64 bg-gradient-to-br ${theme.glow} pointer-events-none rounded-tl-3xl`} />
+
+          <div>
+            {/* Back Header */}
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+              <div className="flex items-center gap-1.5 text-xs font-mono font-bold tracking-wider text-slate-200 uppercase">
+                <ShieldCheck size={14} className={theme.accentText} />
+                <span>Claims &amp; Filing Docket</span>
+              </div>
+
+              {/* Flip Back Button */}
+              <motion.button
+                type="button"
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsFlipped(false)}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/15 bg-white/[0.06] text-[10.5px] font-mono tracking-wider text-slate-200 cursor-pointer"
+              >
+                <RotateCcw size={11} className={theme.accentText} />
+                <span>Overview ↺</span>
+              </motion.button>
+            </div>
+
+            {/* Core Specifications */}
+            <div className="mb-4">
+              <span className="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">
+                Core Architectural Novelty
+              </span>
+              <div className="space-y-1.5">
+                {patent.specs.map((spec) => (
+                  <div
+                    key={spec}
+                    className="flex items-center gap-2 text-xs text-slate-200 bg-white/[0.03] px-3 py-1.5 rounded-lg border border-white/5"
+                  >
+                    <span className={`h-1.5 w-1.5 rounded-full ${theme.badgeBg} border ${theme.badgeBorder} shrink-0`} />
+                    <span className="truncate">{spec}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Official Filing Registry Table */}
+            <div>
+              <span className="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-2">
+                Filing Authority Record
+              </span>
+              <div className="grid grid-cols-2 gap-2 font-mono text-[11px] bg-white/[0.02] p-2.5 rounded-xl border border-white/5">
+                <div>
+                  <span className="block text-[9px] uppercase tracking-wider text-slate-500">App No.</span>
+                  <span className="text-slate-200 font-semibold">{patent.applicationNo}</span>
+                </div>
+                <div>
+                  <span className="block text-[9px] uppercase tracking-wider text-slate-500">Filed</span>
+                  <span className="text-slate-200">{patent.filed}</span>
+                </div>
+                <div>
+                  <span className="block text-[9px] uppercase tracking-wider text-slate-500">Gazette</span>
+                  <span className="text-slate-200">{patent.published}</span>
+                </div>
+                <div>
+                  <span className="block text-[9px] uppercase tracking-wider text-slate-500">Authority</span>
+                  <span className="text-slate-200">IPO · India</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Actions on Back Face */}
+          <div className="pt-4 border-t border-white/10 mt-4 space-y-2.5">
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setIsFlipped(false)}
+              className="w-full py-2.5 px-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 flex items-center justify-center gap-2 text-xs font-mono text-slate-300 cursor-pointer"
+            >
+              <RotateCcw size={12} className={theme.accentText} />
+              <span>Flip Back to Abstract Overview</span>
+            </motion.button>
+
+            <button
+              type="button"
+              onClick={onOpenPdf}
+              className={`w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border font-semibold text-xs tracking-wider uppercase transition-all duration-200 active:scale-[0.98] cursor-pointer ${theme.badgeBg} ${theme.badgeBorder} ${theme.accentText} hover:bg-white/10`}
+            >
+              <FileText size={14} />
+              <span>Examine Official PDF</span>
+              <ArrowUpRight size={13} className="opacity-70" />
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/**
  * PatentVault: Master Interactive Patents Section Container
  * Features:
  * - Desktop: Dual 3D Spring-Tilt Holographic Dockets side-by-side with parallax depth layers.
- * - Mobile: Horizontal touch swipe-and-snap carousel with direction-aware slide physics.
+ * - Mobile: Tactile Dual Segmented Capsule Switcher + 3D Double-Sided Flippable Card with 3D perspective fold.
  */
 export function PatentVault({ patents, onOpenPatent }: PatentVaultProps) {
   const [mobileIndex, setMobileIndex] = useState<number>(0);
   const [direction, setDirection] = useState<number>(0);
 
-  // Mobile Swipe handler
+  // Mobile Swipe handler (horizontal swipe with direction lock)
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     const swipeThreshold = 40;
     const velocityThreshold = 200;
@@ -361,17 +592,10 @@ export function PatentVault({ patents, onOpenPatent }: PatentVaultProps) {
     }
   };
 
-  const handlePrev = () => {
-    if (mobileIndex > 0) {
-      setDirection(-1);
-      setMobileIndex((prev) => prev - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (mobileIndex < patents.length - 1) {
-      setDirection(1);
-      setMobileIndex((prev) => prev + 1);
+  const selectPatent = (idx: number) => {
+    if (idx !== mobileIndex) {
+      setDirection(idx > mobileIndex ? 1 : -1);
+      setMobileIndex(idx);
     }
   };
 
@@ -392,24 +616,107 @@ export function PatentVault({ patents, onOpenPatent }: PatentVaultProps) {
       </div>
 
       {/* ============================================================== */}
-      {/* MOBILE VIEW (< lg): Touch Swipeable 3D Carousel Deck           */}
+      {/* MOBILE VIEW (< lg): 3D Flippable Patent Deck & Segmented Dial  */}
       {/* ============================================================== */}
       <div className="block lg:hidden relative">
-        {/* Navigation Indicator & Arrows */}
-        <div className="flex items-center justify-between mb-4 px-2">
+        {/* Top Segmented Capsule Switcher */}
+        <div className="flex items-center p-1 rounded-2xl bg-slate-900/80 border border-white/10 mb-4 relative shadow-lg">
+          {patents.map((p, idx) => {
+            const isSelected = mobileIndex === idx;
+            return (
+              <button
+                key={p.publicationNo}
+                type="button"
+                onClick={() => selectPatent(idx)}
+                className="relative flex-1 py-2.5 px-3 rounded-xl text-xs font-mono tracking-wider transition-colors duration-200 outline-none select-none text-center cursor-pointer"
+              >
+                {isSelected && (
+                  <motion.div
+                    layoutId="mobile-patent-active-pill"
+                    className="absolute inset-0 rounded-xl bg-white/10 border border-white/20 shadow-md"
+                    transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  />
+                )}
+                <span
+                  className={`relative z-10 transition-colors font-medium flex items-center justify-center gap-1.5 ${
+                    isSelected ? 'text-white font-bold' : 'text-slate-400'
+                  }`}
+                >
+                  <span className="opacity-60">#{p.number}</span>
+                  <span className="truncate">
+                    {p.accent === 'cyan' ? 'Quantum Chiplet' : 'Edge CV & IoT'}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* 3D Pivot Animated Deck Surface with Swipe Support */}
+        <div className="relative py-1 min-h-[530px]">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={mobileIndex}
+              custom={direction}
+              variants={{
+                enter: (dir: number) => ({
+                  x: dir > 0 ? 60 : -60,
+                  rotateY: dir > 0 ? 20 : -20,
+                  opacity: 0,
+                  scale: 0.94,
+                }),
+                center: {
+                  x: 0,
+                  rotateY: 0,
+                  opacity: 1,
+                  scale: 1,
+                },
+                exit: (dir: number) => ({
+                  x: dir < 0 ? 60 : -60,
+                  rotateY: dir < 0 ? 20 : -20,
+                  opacity: 0,
+                  scale: 0.94,
+                }),
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              drag="x"
+              dragDirectionLock
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.15}
+              onDragEnd={handleDragEnd}
+              className="touch-pan-y"
+            >
+              <MobileFlippablePatentCard
+                patent={patents[mobileIndex]}
+                onOpenPdf={() => onOpenPatent(mobileIndex)}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Bottom Pagination Dots & Controls */}
+        <div className="flex items-center justify-between mt-4 px-2">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono font-semibold tracking-widest text-slate-400">
-              PATENT {mobileIndex + 1} OF {patents.length}
-            </span>
-            <span className="text-[10px] font-mono text-slate-500 uppercase">
-              • Swipe Left/Right
-            </span>
+            {patents.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => selectPatent(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === mobileIndex ? 'w-6 bg-sky-400' : 'w-2 bg-white/20 hover:bg-white/40'
+                }`}
+                aria-label={`Go to patent ${i + 1}`}
+              />
+            ))}
           </div>
 
           <div className="flex items-center gap-1.5">
             <button
               type="button"
-              onClick={handlePrev}
+              onClick={() => selectPatent(0)}
               disabled={mobileIndex === 0}
               aria-label="Previous Patent"
               className={`p-2 rounded-xl border transition-all ${
@@ -422,11 +729,11 @@ export function PatentVault({ patents, onOpenPatent }: PatentVaultProps) {
             </button>
             <button
               type="button"
-              onClick={handleNext}
-              disabled={mobileIndex === patents.length - 1}
+              onClick={() => selectPatent(1)}
+              disabled={mobileIndex === 1}
               aria-label="Next Patent"
               className={`p-2 rounded-xl border transition-all ${
-                mobileIndex === patents.length - 1
+                mobileIndex === 1
                   ? 'border-white/5 text-slate-600 cursor-not-allowed opacity-40'
                   : 'border-white/10 bg-white/[0.05] text-slate-200 hover:bg-white/10'
               }`}
@@ -434,66 +741,6 @@ export function PatentVault({ patents, onOpenPatent }: PatentVaultProps) {
               <ChevronRight size={16} />
             </button>
           </div>
-        </div>
-
-        {/* Swipe Surface with AnimatePresence */}
-        <div className="relative overflow-hidden py-2 min-h-[580px]">
-          <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
-              key={mobileIndex}
-              custom={direction}
-              variants={{
-                enter: (dir: number) => ({
-                  x: dir > 0 ? 80 : -80,
-                  opacity: 0,
-                  scale: 0.96,
-                }),
-                center: {
-                  x: 0,
-                  opacity: 1,
-                  scale: 1,
-                },
-                exit: (dir: number) => ({
-                  x: dir < 0 ? 80 : -80,
-                  opacity: 0,
-                  scale: 0.96,
-                }),
-              }}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={handleDragEnd}
-              className="touch-pan-y"
-            >
-              <HolographicPatentCard
-                patent={patents[mobileIndex]}
-                index={0}
-                onOpenPdf={() => onOpenPatent(mobileIndex)}
-              />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Bottom Pagination Dots */}
-        <div className="flex justify-center items-center gap-2 mt-4">
-          {patents.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => {
-                setDirection(i > mobileIndex ? 1 : -1);
-                setMobileIndex(i);
-              }}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === mobileIndex ? 'w-6 bg-sky-400' : 'w-2 bg-white/20 hover:bg-white/40'
-              }`}
-              aria-label={`Go to patent ${i + 1}`}
-            />
-          ))}
         </div>
       </div>
     </div>
