@@ -51,6 +51,11 @@ export interface ProjectItem {
   links: ProjectLink[];
 }
 
+export interface PatentSchematicStep {
+  label: string;
+  desc: string;
+}
+
 export interface PatentItem {
   number: string;
   title: string;
@@ -62,6 +67,10 @@ export interface PatentItem {
   role: string;
   summary: string;
   pdf: string;
+  subsystem: string;
+  accent: 'cyan' | 'amber';
+  schematicSteps: PatentSchematicStep[];
+  specs: string[];
 }
 
 export interface CertificationItem {
@@ -357,6 +366,20 @@ export const portfolioData: PortfolioData = {
       summary:
         'A hybrid quantum-classical computing architecture implemented through chiplet-based semiconductor integration: classical processor chiplets, a cryogenic control chiplet and a QPU chiplet interconnected on a silicon interposer with thermal isolation structures and a spectral veto control module that gates quantum instruction execution when signal noise exceeds defined thresholds.',
       pdf: './patents/quantum-classical-chiplet-architecture.pdf',
+      subsystem: 'Heterogeneous Chiplet Packaging & Cryogenic Control',
+      accent: 'cyan',
+      schematicSteps: [
+        { label: 'Host CPU Chiplet', desc: 'Classical x86/ARM scheduler & runtime' },
+        { label: 'Cryo-Interface', desc: 'Thermal bridge & 4K cryogenic controller' },
+        { label: 'Spectral Noise Veto', desc: 'Hardware veto gating noisy quantum ops' },
+        { label: 'Superconducting QPU', desc: 'Silicon interposer multi-qubit array' },
+      ],
+      specs: [
+        'Silicon interposer integration',
+        'Thermal gradient decoupling',
+        'Real-time decoherence veto logic',
+        'Scalable multi-QPU interconnect',
+      ],
     },
     {
       number: '02',
@@ -370,6 +393,20 @@ export const portfolioData: PortfolioData = {
       summary:
         'An AI-driven adaptive lighting system that captures real-time video, detects facial landmarks, gaze direction and head orientation, combines behavioral signals with ambient light intensity, classifies the user into high/medium/low focus states through machine-learning decision logic, and adjusts LED brightness and color temperature over IoT.',
       pdf: './patents/adaptive-lighting-focus-detection.pdf',
+      subsystem: 'Edge Computer Vision & Closed-Loop IoT Automation',
+      accent: 'amber',
+      schematicSteps: [
+        { label: 'Optical Sensor', desc: 'Real-time video & ambient lux capture' },
+        { label: 'Facial & Gaze Vectorizer', desc: 'Head-pose & landmark geometric extraction' },
+        { label: 'ML Cognitive Classifier', desc: 'High/med/low user focus decision logic' },
+        { label: 'IoT PWM Controller', desc: 'Dynamic LED CCT & lux modulation' },
+      ],
+      specs: [
+        'Real-time gaze & head-pose tracking',
+        'Multi-modal lux + behavioral fusion',
+        'Edge ML state classification',
+        'IoT circadian LED feedback loop',
+      ],
     },
   ],
   certifications: [

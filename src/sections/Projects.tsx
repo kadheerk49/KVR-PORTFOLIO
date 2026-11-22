@@ -1,15 +1,15 @@
 import { useEffect, useState, lazy, Suspense, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, FileText, Github, Linkedin, Mail, MessageSquare, Send, User } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageSquare, Send, User } from 'lucide-react';
 import { SiGithub, SiReddit, SiTelegram } from 'react-icons/si';
 import { FadeIn } from '../components/FadeIn';
-import BorderGlow from '../components/BorderGlow';
 import SpecularButton from '../components/SpecularButton';
 import { ElectricBorder } from '../components/ElectricBorder';
 import { ScrollStack, ScrollStackItem } from '../components/ScrollStack';
 import { SkillIcon } from '../components/SkillIcon';
 import { ProjectCarouselMobile } from '../components/ProjectCarouselMobile';
 import { CredentialFanDeck } from '../components/CredentialFanDeck';
+import { PatentBlueprintCard } from '../components/PatentBlueprintCard';
 import { portfolioData, type ProjectStatus } from '../data/portfolio';
 const PdfViewerModal = lazy(() => import('../components/PdfViewerModal'));
 
@@ -192,83 +192,29 @@ export function ProjectsSection() {
           </ScrollStack>
         </div>
 
-        {/* Patents — filed & published Indian patent applications */}
+        {/* Patents — Cybernetic Blueprint & Architectural Schematics */}
         <FadeIn delay={0.3} duration={0.8} y={40}>
-          <div className="mt-24">
-            <h3 className="text-3xl sm:text-4xl font-light text-white text-center tracking-tight mb-3 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-              Patents <span className="accent-gradient-text font-medium">Filed</span>
-            </h3>
-            <p className="text-center text-sm text-slate-400 mb-10 tracking-wide">
-              Published Indian patent applications — co-inventor, Vellore Institute of Technology
-            </p>
+          <div className="mt-28">
+            <div className="flex flex-col items-center justify-center text-center mb-12">
+              <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-cyan-400 bg-cyan-400/10 border border-cyan-400/30 px-3 py-1 rounded-full mb-3">
+                Intellectual Property &amp; Architecture
+              </span>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+                Patents <span className="accent-gradient-text font-medium">Filed</span>
+              </h3>
+              <p className="text-sm sm:text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
+                Published Indian patent applications with Vellore Institute of Technology — deep-tech schematics and hardware-software system claims
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {portfolioData.patents.map((patent, index) => (
-                <motion.div
+                <PatentBlueprintCard
                   key={patent.publicationNo}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -70 : 70, scale: 0.96 }}
-                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className="h-full"
-                >
-                <BorderGlow
-                  glowColor="43 96 56"
-                  colors={['#38bdf8', '#a7f3d0', '#a855f7']}
-                  backgroundColor="#0b0f19"
-                  borderRadius={24}
-                  glowRadius={36}
-                  glowIntensity={0.9}
-                  className="h-full w-full"
-                >
-                <button
-                  type="button"
-                  onClick={() => setOpenPatent(index)}
-                  className="group block w-full h-full text-left p-7 focus-visible:outline-2 focus-visible:outline-amber-400/60 rounded-[inherit]"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-400/40 bg-amber-400/10 text-[10px] font-bold tracking-[0.18em] uppercase text-amber-300">
-                      <Award size={12} />
-                      Patent Published
-                    </span>
-                    <span className="text-[11px] font-semibold tabular-nums text-slate-500">
-                      {patent.number} / {String(portfolioData.patents.length).padStart(2, '0')}
-                    </span>
-                  </div>
-
-                  <h4 className="text-lg sm:text-xl font-medium text-white leading-snug mb-3">
-                    {patent.title}
-                  </h4>
-                  <p className="text-[13px] sm:text-sm text-slate-300 leading-relaxed line-clamp-4 mb-5">
-                    {patent.summary}
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] mb-5">
-                    <div>
-                      <span className="block text-slate-500 uppercase tracking-[0.14em] font-bold">Publication No.</span>
-                      <span className="text-slate-200 tabular-nums">{patent.publicationNo}</span>
-                    </div>
-                    <div>
-                      <span className="block text-slate-500 uppercase tracking-[0.14em] font-bold">Published</span>
-                      <span className="text-slate-200">{patent.published}</span>
-                    </div>
-                    <div>
-                      <span className="block text-slate-500 uppercase tracking-[0.14em] font-bold">Filed</span>
-                      <span className="text-slate-200">{patent.filed}</span>
-                    </div>
-                    <div>
-                      <span className="block text-slate-500 uppercase tracking-[0.14em] font-bold">Role</span>
-                      <span className="text-amber-300/90 font-semibold">{patent.role}</span>
-                    </div>
-                  </div>
-
-                  <span className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] uppercase text-amber-300/90 group-hover:text-amber-200 transition-colors duration-300">
-                    <FileText size={14} />
-                    Click to view the patent PDF
-                  </span>
-                </button>
-                </BorderGlow>
-                </motion.div>
+                  patent={patent}
+                  index={index}
+                  onOpenPdf={() => setOpenPatent(index)}
+                />
               ))}
             </div>
           </div>
