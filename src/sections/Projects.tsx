@@ -192,22 +192,22 @@ export function ProjectsSection() {
           </ScrollStack>
         </div>
 
-        {/* Patents — Cybernetic Blueprint & Architectural Schematics */}
+        {/* Patents — Peer-Reviewed Hardware & Edge AI Architectures */}
         <FadeIn delay={0.3} duration={0.8} y={40}>
           <div className="mt-28">
             <div className="flex flex-col items-center justify-center text-center mb-12">
-              <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-cyan-400 bg-cyan-400/10 border border-cyan-400/30 px-3 py-1 rounded-full mb-3">
-                Intellectual Property &amp; Architecture
+              <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-sky-400 font-medium mb-3">
+                Intellectual Property
               </span>
               <h3 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
                 Patents <span className="accent-gradient-text font-medium">Filed</span>
               </h3>
-              <p className="text-sm sm:text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
-                Published Indian patent applications with Vellore Institute of Technology — deep-tech schematics and hardware-software system claims
+              <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                Published Indian patent applications with Vellore Institute of Technology — peer-reviewed hardware architectures and edge AI systems.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               {portfolioData.patents.map((patent, index) => (
                 <PatentBlueprintCard
                   key={patent.publicationNo}
