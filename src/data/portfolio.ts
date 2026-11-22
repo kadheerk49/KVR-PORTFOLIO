@@ -393,6 +393,7 @@ export const portfolioData: PortfolioData = {
       period: 'Nov 2026',
       type: 'Official Certification of Completion',
       pdf: './certifications/n8n-quickstart-qs101.pdf',
+      verifyUrl: 'https://learn.n8n.io/certificates/f26b1d56a91245efad49aaf6f417abbd',
       brand: 'n8n',
       skills: ['Workflow Orchestration', 'API Integrations', 'Webhooks', 'Task Automation'],
     },
