@@ -9,7 +9,7 @@ import { ScrollStack, ScrollStackItem } from '../components/ScrollStack';
 import { SkillIcon } from '../components/SkillIcon';
 import { ProjectCarouselMobile } from '../components/ProjectCarouselMobile';
 import { CredentialFanDeck } from '../components/CredentialFanDeck';
-import { PatentBlueprintCard } from '../components/PatentBlueprintCard';
+import { PatentVault } from '../components/PatentVault';
 import { portfolioData, type ProjectStatus } from '../data/portfolio';
 const PdfViewerModal = lazy(() => import('../components/PdfViewerModal'));
 
@@ -192,7 +192,7 @@ export function ProjectsSection() {
           </ScrollStack>
         </div>
 
-        {/* Patents — Peer-Reviewed Hardware & Edge AI Architectures */}
+        {/* Patents — 3D Holographic Patent Vault & Architectural Registry */}
         <FadeIn delay={0.3} duration={0.8} y={40}>
           <div className="mt-28">
             <div className="flex flex-col items-center justify-center text-center mb-12">
@@ -203,20 +203,14 @@ export function ProjectsSection() {
                 Patents <span className="accent-gradient-text font-medium">Filed</span>
               </h3>
               <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                Published Indian patent applications with Vellore Institute of Technology — peer-reviewed hardware architectures and edge AI systems.
+                Published Indian patent applications with Vellore Institute of Technology — interactive 3D perspective dockets, kinetic claim inspector &amp; verified gazette records.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              {portfolioData.patents.map((patent, index) => (
-                <PatentBlueprintCard
-                  key={patent.publicationNo}
-                  patent={patent}
-                  index={index}
-                  onOpenPdf={() => setOpenPatent(index)}
-                />
-              ))}
-            </div>
+            <PatentVault
+              patents={portfolioData.patents}
+              onOpenPatent={(index) => setOpenPatent(index)}
+            />
           </div>
         </FadeIn>
 
