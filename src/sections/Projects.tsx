@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, FileText, Github, Linkedin, Mail, MessageSquare, Send, User, X } from 'lucide-react';
-import { SiGithub, SiReddit, SiTelegram } from 'react-icons/si';
+import { Award, CheckCircle2, ExternalLink, FileText, Github, Linkedin, Mail, MessageSquare, Send, User, X } from 'lucide-react';
+import { SiClaude, SiGithub, SiN8N, SiPython, SiReddit, SiTelegram } from 'react-icons/si';
 import { FadeIn } from '../components/FadeIn';
 import BorderGlow from '../components/BorderGlow';
 import SpecularButton from '../components/SpecularButton';
@@ -10,6 +10,67 @@ import { ScrollStack, ScrollStackItem } from '../components/ScrollStack';
 import { SkillIcon } from '../components/SkillIcon';
 import { ProjectCarouselMobile } from '../components/ProjectCarouselMobile';
 import { portfolioData, type ProjectStatus } from '../data/portfolio';
+
+const BRAND_CONFIGS: Record<
+  'claude' | 'n8n' | 'python',
+  {
+    Icon: React.ComponentType<{ size?: number; className?: string }>;
+    glowColor: string;
+    colors: string[];
+    borderHover: string;
+    glowHover: string;
+    iconBg: string;
+    iconBorder: string;
+    iconColor: string;
+    badgeBg: string;
+    badgeBorder: string;
+    badgeText: string;
+    codeColor: string;
+  }
+> = {
+  claude: {
+    Icon: SiClaude,
+    glowColor: '18 70 60',
+    colors: ['#D97757', '#F39C7A', '#F59E0B'],
+    borderHover: 'hover:border-[#D97757]/60',
+    glowHover: 'group-hover:shadow-[0_16px_50px_rgba(217,119,87,0.22)]',
+    iconBg: 'bg-gradient-to-br from-[#D97757]/25 to-amber-500/10',
+    iconBorder: 'border-[#D97757]/40',
+    iconColor: 'text-[#F39C7A]',
+    badgeBg: 'bg-[#D97757]/10',
+    badgeBorder: 'border-[#D97757]/30',
+    badgeText: 'text-[#F39C7A]',
+    codeColor: 'text-[#F39C7A]',
+  },
+  n8n: {
+    Icon: SiN8N,
+    glowColor: '346 80 61',
+    colors: ['#EA4B71', '#FF7096', '#FB7185'],
+    borderHover: 'hover:border-[#EA4B71]/60',
+    glowHover: 'group-hover:shadow-[0_16px_50px_rgba(234,75,113,0.22)]',
+    iconBg: 'bg-gradient-to-br from-[#EA4B71]/25 to-rose-500/10',
+    iconBorder: 'border-[#EA4B71]/40',
+    iconColor: 'text-[#FF7096]',
+    badgeBg: 'bg-[#EA4B71]/10',
+    badgeBorder: 'border-[#EA4B71]/30',
+    badgeText: 'text-[#FF7096]',
+    codeColor: 'text-[#FF7096]',
+  },
+  python: {
+    Icon: SiPython,
+    glowColor: '199 89 48',
+    colors: ['#38BDF8', '#34D399', '#60A5FA'],
+    borderHover: 'hover:border-sky-400/60',
+    glowHover: 'group-hover:shadow-[0_16px_50px_rgba(56,189,248,0.22)]',
+    iconBg: 'bg-gradient-to-br from-sky-400/25 to-emerald-400/10',
+    iconBorder: 'border-sky-400/40',
+    iconColor: 'text-sky-300',
+    badgeBg: 'bg-sky-400/10',
+    badgeBorder: 'border-sky-400/30',
+    badgeText: 'text-sky-300',
+    codeColor: 'text-sky-300',
+  },
+};
 
 const STATUS_STYLES: Record<ProjectStatus, { label: string; className: string }> = {
   ongoing: {
@@ -278,52 +339,133 @@ export function ProjectsSection() {
               Certifications
             </h3>
             <p className="text-center text-sm text-slate-400 mb-10 tracking-wide">
-              Courses and credentials — click to view the certificate
+              Verified industry credentials &amp; technical accreditations
             </p>
 
-            <div className="flex flex-wrap justify-center gap-6">
-              {portfolioData.certifications.map((cert, index) => (
-                <motion.button
-                  key={cert.code}
-                  type="button"
-                  onClick={() => setOpenCert(index)}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="group w-full max-w-2xl text-left rounded-3xl bg-slate-950/80 backdrop-blur-2xl border border-white/15 p-6 sm:p-7 shadow-xl transition-colors duration-300 hover:border-emerald-400/50 hover:shadow-[0_12px_40px_rgba(52,211,153,0.12)] focus-visible:outline-2 focus-visible:outline-emerald-400/60"
-                >
-                  <div className="flex items-start gap-5">
-                    {/* medallion */}
-                    <span className="flex h-14 w-14 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400/20 to-sky-400/20 border border-emerald-400/30 text-emerald-300 group-hover:scale-110 transition-transform duration-300">
-                      <Award size={26} />
-                    </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {portfolioData.certifications.map((cert, index) => {
+                const brand = BRAND_CONFIGS[cert.brand];
+                const BrandIcon = brand.Icon;
 
-                    <div className="min-w-0 flex-1">
-                      <span className="inline-block px-2.5 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-[9.5px] font-bold tracking-[0.16em] uppercase text-emerald-300 mb-2.5">
-                        {cert.type}
-                      </span>
-                      <h4 className="text-lg sm:text-xl font-medium text-white leading-snug mb-1.5">
-                        {cert.title}
-                      </h4>
-                      <p className="text-[13px] text-slate-400 mb-3">
-                        {cert.issuer} · {cert.school}
-                      </p>
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px]">
-                        <span className="font-bold tracking-[0.14em] uppercase text-slate-500">
-                          {cert.code}
-                        </span>
-                        <span className="text-slate-400 tabular-nums">{cert.period}</span>
-                        <span className="inline-flex items-center gap-1.5 text-emerald-300/90 font-semibold group-hover:text-emerald-200 transition-colors duration-300">
-                          <FileText size={13} />
-                          View certificate PDF
-                        </span>
+                return (
+                  <motion.div
+                    key={cert.code}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="h-full"
+                  >
+                    <BorderGlow
+                      glowColor={brand.glowColor}
+                      colors={brand.colors}
+                      backgroundColor="#0b0f19"
+                      borderRadius={24}
+                      glowRadius={36}
+                      glowIntensity={0.85}
+                      className="h-full w-full"
+                    >
+                      <div
+                        className={`group relative h-full flex flex-col justify-between rounded-[24px] bg-slate-950/85 backdrop-blur-2xl border border-white/15 p-6 sm:p-7 transition-all duration-300 ${brand.borderHover} ${brand.glowHover}`}
+                      >
+                        <div>
+                          {/* Top Bar: Brand Icon + Verified Status Beacon + Code */}
+                          <div className="flex items-center justify-between gap-3 mb-5">
+                            <div className="flex items-center gap-3">
+                              <span
+                                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${brand.iconBg} border ${brand.iconBorder} ${brand.iconColor} group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                              >
+                                <BrandIcon size={24} />
+                              </span>
+                              <div>
+                                <span
+                                  className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[9.5px] font-bold tracking-[0.15em] uppercase ${brand.badgeBg} ${brand.badgeBorder} ${brand.badgeText}`}
+                                >
+                                  <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
+                                  Verified
+                                </span>
+                              </div>
+                            </div>
+                            <span
+                              className={`font-mono text-xs font-bold tracking-widest px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 ${brand.codeColor}`}
+                            >
+                              {cert.code}
+                            </span>
+                          </div>
+
+                          {/* Title & Credential Type */}
+                          <div className="mb-4">
+                            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 block mb-1.5">
+                              {cert.type}
+                            </span>
+                            <h4 className="text-lg sm:text-xl font-medium text-white leading-snug group-hover:text-white transition-colors">
+                              {cert.title}
+                            </h4>
+                          </div>
+
+                          {/* Issuer & Period */}
+                          <div className="flex flex-col gap-1 text-[12.5px] text-slate-400 mb-5 pb-5 border-b border-white/10">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-slate-300 font-medium">{cert.issuer}</span>
+                              <span className="text-[11px] text-slate-500 tabular-nums">{cert.period}</span>
+                            </div>
+                            <p className="text-[11.5px] text-slate-500 truncate">{cert.school}</p>
+                          </div>
+
+                          {/* Skills Tags */}
+                          <div className="mb-6">
+                            <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-slate-500 mb-2.5">
+                              Competencies
+                            </p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {cert.skills.map((skill) => (
+                                <span
+                                  key={skill}
+                                  className="text-[10.5px] px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-slate-300 font-medium"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Action Bar */}
+                        <div className="flex items-center gap-2 pt-2">
+                          <button
+                            type="button"
+                            onClick={() => setOpenCert(index)}
+                            className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white/[0.07] hover:bg-white/[0.14] border border-white/15 hover:border-white/30 text-xs font-semibold text-white transition-all duration-300 shadow-sm active:scale-[0.98]"
+                          >
+                            <FileText size={14} className={brand.badgeText} />
+                            View PDF
+                          </button>
+                          {cert.verifyUrl ? (
+                            <a
+                              href={cert.verifyUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className={`inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl border text-xs font-semibold transition-all duration-300 shadow-sm active:scale-[0.98] ${brand.badgeBg} ${brand.badgeBorder} ${brand.badgeText} hover:bg-white/10`}
+                              title="Verify badge online"
+                            >
+                              <ExternalLink size={13} />
+                              Verify
+                            </a>
+                          ) : (
+                            <span
+                              className="inline-flex items-center justify-center gap-1 py-2.5 px-3 rounded-xl bg-white/[0.02] border border-white/5 text-[11px] font-medium text-slate-500"
+                              title="Verified by institutional course code"
+                            >
+                              <CheckCircle2 size={13} className="text-emerald-400/70" />
+                              Archived
+                            </span>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </motion.button>
-              ))}
+                    </BorderGlow>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </FadeIn>

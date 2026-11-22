@@ -73,6 +73,8 @@ export interface CertificationItem {
   type: string;
   pdf: string;
   verifyUrl?: string;
+  brand: 'claude' | 'n8n' | 'python';
+  skills: string[];
 }
 
 export interface ContactItem {
@@ -380,6 +382,8 @@ export const portfolioData: PortfolioData = {
       type: 'Official Verified Completion Badge',
       pdf: './certifications/claude-academy-mcp.pdf',
       verifyUrl: 'https://academy.claude.com/verify/672e05263cd7ee2eb28e6aaae845a805',
+      brand: 'claude',
+      skills: ['Model Context Protocol', 'Tool Calling', 'AI Agents', 'Claude API'],
     },
     {
       title: 'n8n Quickstart Course (QS101)',
@@ -389,6 +393,8 @@ export const portfolioData: PortfolioData = {
       period: 'Nov 2026',
       type: 'Official Certification of Completion',
       pdf: './certifications/n8n-quickstart-qs101.pdf',
+      brand: 'n8n',
+      skills: ['Workflow Orchestration', 'API Integrations', 'Webhooks', 'Task Automation'],
     },
     {
       title: 'Python for Data Analysis and Visualization',
@@ -398,6 +404,8 @@ export const portfolioData: PortfolioData = {
       period: 'Sep 2025 - Nov 2025',
       type: 'Value Added Course · Certificate of Participation',
       pdf: './certifications/python-data-analysis-vac2006.pdf',
+      brand: 'python',
+      skills: ['Pandas & NumPy', 'Data Visualization', 'Exploratory Analysis', 'Matplotlib'],
     },
   ],
   contacts: [
