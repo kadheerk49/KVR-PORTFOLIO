@@ -586,6 +586,17 @@ export function ProjectsSection() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
+                  {portfolioData.certifications[openCert].verifyUrl && (
+                    <a
+                      href={portfolioData.certifications[openCert].verifyUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-400/15 border border-emerald-400/50 px-4 py-2 text-xs font-semibold text-emerald-300 hover:bg-emerald-400/25 hover:text-white transition-colors duration-300"
+                    >
+                      <ExternalLink size={14} />
+                      Verify Badge
+                    </a>
+                  )}
                   <a
                     href={portfolioData.certifications[openCert].pdf}
                     target="_blank"

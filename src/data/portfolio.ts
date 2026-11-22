@@ -72,6 +72,7 @@ export interface CertificationItem {
   period: string;
   type: string;
   pdf: string;
+  verifyUrl?: string;
 }
 
 export interface ContactItem {
@@ -370,6 +371,16 @@ export const portfolioData: PortfolioData = {
     },
   ],
   certifications: [
+    {
+      title: 'Introduction to Model Context Protocol',
+      code: 'MCP',
+      issuer: 'Anthropic',
+      school: 'Claude Academy',
+      period: 'Nov 2026',
+      type: 'Official Verified Completion Badge',
+      pdf: './certifications/claude-academy-mcp.pdf',
+      verifyUrl: 'https://academy.claude.com/verify/672e05263cd7ee2eb28e6aaae845a805',
+    },
     {
       title: 'n8n Quickstart Course (QS101)',
       code: 'QS101',
