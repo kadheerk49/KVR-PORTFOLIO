@@ -630,7 +630,7 @@ export function CredentialFanDeck({ certifications, onOpenCert }: CredentialFanD
                 className={`w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border font-semibold text-xs tracking-wider uppercase transition-all active:scale-[0.98] ${activeTheme.badgeBg} ${activeTheme.badgeBorder} ${activeTheme.badgeText}`}
               >
                 <ExternalLink size={14} />
-                Verify On Claude Academy
+                Verify On {activeCert.brand === 'claude' ? 'Claude Academy' : activeCert.brand === 'n8n' ? 'n8n' : 'Official Portal'}
               </a>
             )}
           </div>
