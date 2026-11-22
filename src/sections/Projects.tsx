@@ -1,6 +1,6 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useState, lazy, Suspense, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, FileText, Github, Linkedin, Mail, MessageSquare, Send, User, X } from 'lucide-react';
+import { Award, FileText, Github, Linkedin, Mail, MessageSquare, Send, User } from 'lucide-react';
 import { SiGithub, SiReddit, SiTelegram } from 'react-icons/si';
 import { FadeIn } from '../components/FadeIn';
 import BorderGlow from '../components/BorderGlow';
@@ -11,6 +11,8 @@ import { SkillIcon } from '../components/SkillIcon';
 import { ProjectCarouselMobile } from '../components/ProjectCarouselMobile';
 import { CredentialFanDeck } from '../components/CredentialFanDeck';
 import { portfolioData, type ProjectStatus } from '../data/portfolio';
+const PdfViewerModal = lazy(() => import('../components/PdfViewerModal'));
+
 
 const STATUS_STYLES: Record<ProjectStatus, { label: string; className: string }> = {
   ongoing: {
@@ -459,132 +461,35 @@ export function ProjectsSection() {
         </footer>
       </div>
 
-      {/* Patent PDF viewer */}
-      <AnimatePresence>
-        {openPatent !== null && portfolioData.patents[openPatent] && (
-          <motion.div
-            key="patent-viewer"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[70] bg-[#050507]/90 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6"
-            onClick={() => setOpenPatent(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.92, y: 24, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.94, y: 16, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-              className="relative w-full max-w-4xl h-[88vh] rounded-3xl bg-slate-950 border border-amber-400/30 shadow-[0_30px_90px_rgba(0,0,0,0.75)] overflow-hidden flex flex-col"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-white/10 bg-slate-950/95">
-                <div className="min-w-0">
-                  <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-amber-300/90">
-                    Indian Patent Application · {portfolioData.patents[openPatent].publicationNo}
-                  </p>
-                  <p className="text-sm font-medium text-white truncate">
-                    {portfolioData.patents[openPatent].title}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <a
-                    href={portfolioData.patents[openPatent].pdf}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] border border-white/15 px-4 py-2 text-xs font-semibold text-slate-200 hover:border-amber-400/50 hover:text-amber-200 transition-colors duration-300"
-                  >
-                    <ExternalLink size={14} />
-                    Open in new tab
-                  </a>
-                  <button
-                    onClick={() => setOpenPatent(null)}
-                    aria-label="Close patent viewer"
-                    className="h-10 w-10 rounded-full bg-white/[0.06] border border-white/15 text-slate-300 hover:text-white hover:border-amber-400/50 transition-colors duration-300 flex items-center justify-center"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-              </div>
-              <iframe
-                src={portfolioData.patents[openPatent].pdf}
-                title={portfolioData.patents[openPatent].title}
-                className="flex-1 w-full bg-white"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Certificate PDF viewer */}
-      <AnimatePresence>
-        {openCert !== null && portfolioData.certifications[openCert] && (
-          <motion.div
-            key="cert-viewer"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[70] bg-[#050507]/90 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6"
-            onClick={() => setOpenCert(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.92, y: 24, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.94, y: 16, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-              className="relative w-full max-w-4xl h-[88vh] rounded-3xl bg-slate-950 border border-emerald-400/30 shadow-[0_30px_90px_rgba(0,0,0,0.75)] overflow-hidden flex flex-col"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-white/10 bg-slate-950/95">
-                <div className="min-w-0">
-                  <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-emerald-300/90">
-                    {portfolioData.certifications[openCert].code} · {portfolioData.certifications[openCert].type}
-                  </p>
-                  <p className="text-sm font-medium text-white truncate">
-                    {portfolioData.certifications[openCert].title}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  {portfolioData.certifications[openCert].verifyUrl && (
-                    <a
-                      href={portfolioData.certifications[openCert].verifyUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-400/15 border border-emerald-400/50 px-4 py-2 text-xs font-semibold text-emerald-300 hover:bg-emerald-400/25 hover:text-white transition-colors duration-300"
-                    >
-                      <ExternalLink size={14} />
-                      Verify Badge
-                    </a>
-                  )}
-                  <a
-                    href={portfolioData.certifications[openCert].pdf}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] border border-white/15 px-4 py-2 text-xs font-semibold text-slate-200 hover:border-emerald-400/50 hover:text-emerald-200 transition-colors duration-300"
-                  >
-                    <ExternalLink size={14} />
-                    Open in new tab
-                  </a>
-                  <button
-                    onClick={() => setOpenCert(null)}
-                    aria-label="Close certificate viewer"
-                    className="h-10 w-10 rounded-full bg-white/[0.06] border border-white/15 text-slate-300 hover:text-white hover:border-emerald-400/50 transition-colors duration-300 flex items-center justify-center"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-              </div>
-              <iframe
-                src={portfolioData.certifications[openCert].pdf}
-                title={portfolioData.certifications[openCert].title}
-                className="flex-1 w-full bg-white"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Lazy-Loaded Document Viewers */}
+      <Suspense fallback={null}>
+        <AnimatePresence>
+          {openPatent !== null && portfolioData.patents[openPatent] && (
+            <PdfViewerModal
+              key="patent-modal"
+              isOpen={openPatent !== null}
+              onClose={() => setOpenPatent(null)}
+              title={portfolioData.patents[openPatent].title}
+              subtitle={`Indian Patent Application · ${portfolioData.patents[openPatent].publicationNo}`}
+              pdfUrl={portfolioData.patents[openPatent].pdf}
+              accentColorClass="border-amber-400/30 text-amber-300"
+            />
+          )}
+          {openCert !== null && portfolioData.certifications[openCert] && (
+            <PdfViewerModal
+              key="cert-modal"
+              isOpen={openCert !== null}
+              onClose={() => setOpenCert(null)}
+              title={portfolioData.certifications[openCert].title}
+              subtitle={`${portfolioData.certifications[openCert].code} · ${portfolioData.certifications[openCert].type}`}
+              pdfUrl={portfolioData.certifications[openCert].pdf}
+              verifyUrl={portfolioData.certifications[openCert].verifyUrl}
+              verifyLabel="Verify Badge"
+              accentColorClass="border-emerald-400/30 text-emerald-300"
+            />
+          )}
+        </AnimatePresence>
+      </Suspense>
     </section>
   );
 }

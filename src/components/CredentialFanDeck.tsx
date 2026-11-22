@@ -196,7 +196,7 @@ export function CredentialFanDeck({ certifications, onOpenCert }: CredentialFanD
                     damping: 26,
                   }}
                   style={{ zIndex }}
-                  className="absolute w-[330px] h-[210px] rounded-2xl cursor-pointer select-none transition-shadow duration-300 outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+                  className="absolute w-[330px] h-[210px] rounded-2xl cursor-pointer select-none transition-shadow duration-300 outline-none focus-visible:ring-2 focus-visible:ring-sky-400 will-change-transform [transform-style:preserve-3d]"
                 >
                   {/* Physical Metallic Card Body */}
                   <div
@@ -489,7 +489,7 @@ export function CredentialFanDeck({ certifications, onOpenCert }: CredentialFanD
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.4}
                 onDragEnd={handleDragEnd}
-                className="touch-pan-y cursor-grab active:cursor-grabbing w-full"
+                className="touch-pan-y cursor-grab active:cursor-grabbing w-full will-change-transform"
               >
                 {/* Physical Metallic Card Preview */}
                 <div
